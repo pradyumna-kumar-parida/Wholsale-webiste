@@ -488,7 +488,7 @@ body {
   border-bottom: 3px solid transparent;
   transition: all 0.3s;
 }
-@media (max-width: 400px) {
+@media (max-width: 478px) {
   .newsletter-form {
     display: grid !important;
   }
@@ -526,9 +526,7 @@ body {
   .luxery-header {
     padding: 0 !important;
   }
-  nav {
-    position: relative !important;
-  }
+
   .main-nav {
     padding: 0 !important;
   }
@@ -597,7 +595,11 @@ body {
   overflow: hidden;
   border-radius: 12px;
 }
-
+@media (max-width: 478px) {
+  nav {
+    position: relative !important;
+  }
+}
 .slider-wrapper {
   display: flex;
   transition: transform 0.5s ease;
@@ -1524,6 +1526,9 @@ footer {
 
     padding-bottom: 10px; /* space for scrollbar */
     margin-bottom: 40px;
+  }
+  .account-text{
+    display: none !important;
   }
   .shopss-now-btn {
     display: none;
