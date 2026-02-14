@@ -1,0 +1,3134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WholeSale Hub - Enhanced</title>
+  <link rel="icon" type="image/svg+xml" href="./wholesale - Copy.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./Wholesales.css">
+  <style>
+    /* Order tracking widget styles */
+    .tracking-widget-button {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 9999;
+      border: 2px dashed black;
+      transition: transform .15s ease, box-shadow .15s ease;
+      animation: pulseZoom 1.5s infinite;
+    }
+
+    @keyframes pulseZoom {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .tracking-widget-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Ensure any image inside the circular button scales and centers */
+    .tracking-widget-button img {
+      width: 69%;
+      height: 70%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+
+    .tracking-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+      padding: 24px;
+    }
+
+    .tracking-modal {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      font-family: inherit;
+    }
+
+    .tracking-modal h3 {
+      margin: 0 0 8px 0;
+      font-size: 22px;
+      color: #222;
+    }
+
+    .tracking-modal p.small {
+      margin: 0 0 12px 0;
+      color: #666;
+      font-size: 16px
+    }
+
+    .tracking-form {
+      z-index: 1091;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tracking-form input[type="text"] {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #e6e6e6;
+      font-size: 14px;
+    }
+
+    .tracking-form button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .tracking-result {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #333
+    }
+
+    .tracking-result .status {
+      font-weight: 700;
+      color: #0b8a00
+    }
+
+    .tracking-modal .close-x {
+      position: absolute;
+      right: 16px;
+      top: 12px;
+      color: #999;
+      cursor: pointer
+    }
+
+    @media (max-width:480px) {
+      .tracking-widget-button {
+        right: 14px;
+        bottom: 14px;
+        width: 56px;
+
+
+        height: 56px
+      }
+
+      .tracking-modal {
+        max-width: 92%;
+        padding: 16px
+      }
+
+      .tracking-widget-button img {
+        width: 62%;
+        height: 62%;
+      }
+    }
+
+    @media (min-width:1500px) {
+      .tracking-widget-button {
+        right: calc((100vw - 1500px) / 2 + 24px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="top-banner">
+    <span class="banner-title">Fresh Fits</span>
+    <span class="banner-subtitle">Every Tuesday</span>
+    <button class="shop-now-btn">SHOP NOW </button>
+  </div> -->
+
+
+  <div class="container">
+
+
+    <nav>
+      <div class="utility-bar">
+        <a href="#" class="utility-link">
+          <span class="utility-icon"><img src="https://cdn-icons-png.flaticon.com/128/2592/2592317.png" alt=""></span>
+          <span>IP Protection Portal</span>
+        </a>
+        <a href="#" class="utility-link">
+          <span class="utility-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/3214/3214721.png" alt="">
+          </span>
+          <span>Buyer Protection</span>
+        </a>
+        <a href="#" class="utility-link">
+          <span class="utility-icon"><img src="https://cdn-icons-png.flaticon.com/128/811/811476.png" alt=""></span>
+          <span>Customer Service</span>
+        </a>
+        <a href="#" class="utility-link">
+          <span class="utility-icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/3620/3620659.png" alt="">
+          </span>
+          <span>Save more</span>
+        </a>
+        <a href="#" class="utility-link">
+          <div class="country-selector">
+            <div class="selected-country">
+              <div class="country-display">
+                <img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag" id="selected-flag">
+                <span class="country-code" id="selected-code">IND</span>
+              </div>
+              <div class="arrow"></div>
+            </div>
+
+            <div class="dropdown-menuss">
+              <div class="country-option selected" data-code="IND" data-flag="https://flagcdn.com/w40/in.png">
+                <img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag">
+                <div class="country-info">
+                  <span class="country-code-full">IND</span>
+                </div>
+              </div>
+              <div class="country-option" data-code="USA" data-flag="https://flagcdn.com/w40/us.png">
+                <img src="https://flagcdn.com/w40/us.png" alt="USA Flag" class="flag">
+                <div class="country-info">
+                  <span class="country-code-full">USA</span>
+                </div>
+              </div>
+              <div class="country-option" data-code="GBR" data-flag="https://flagcdn.com/w40/gb.png">
+                <img src="https://flagcdn.com/w40/gb.png" alt="UK Flag" class="flag">
+                <div class="country-info">
+                  <span class="country-code-full">GBR</span>
+                </div>
+              </div>
+              <div class="country-option" data-code="CAN" data-flag="https://flagcdn.com/w40/ca.png">
+                <img src="https://flagcdn.com/w40/ca.png" alt="Canada Flag" class="flag">
+                <div class="country-info">
+                  <span class="country-code-full">CAN</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="main-header">
+        <div class="mob_header">
+          <div class="logo">
+            <div class="logo-main">
+              <span class="logo-dh">WHOLESALE</span><span class="logo-gate"> Hub</span><span
+                class="logo-com">.com</span>
+            </div>
+            <div class="logo-tagline">Buy Globally · Sell Globally</div>
+          </div>
+          <div class="right_flags">
+
+            <div class="country-selector">
+              <div class="selected-countrys">
+                <div class="country-display">
+                  <img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag" id="selected-flag">
+                  <span class="country-code" id="selected-code">IND</span>
+                </div>
+                <div class="arrow"></div>
+              </div>
+
+              <div class="dropdown-menuss">
+                <div class="country-option selected" data-code="IND" data-flag="https://flagcdn.com/w40/in.png">
+                  <img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag">
+                  <div class="country-info">
+                    <span class="country-code-full">IND</span>
+                  </div>
+                </div>
+                <div class="country-option" data-code="USA" data-flag="https://flagcdn.com/w40/us.png">
+                  <img src="https://flagcdn.com/w40/us.png" alt="USA Flag" class="flag">
+                  <div class="country-info">
+                    <span class="country-code-full">USA</span>
+                  </div>
+                </div>
+                <div class="country-option" data-code="GBR" data-flag="https://flagcdn.com/w40/gb.png">
+                  <img src="https://flagcdn.com/w40/gb.png" alt="UK Flag" class="flag">
+                  <div class="country-info">
+                    <span class="country-code-full">GBR</span>
+                  </div>
+                </div>
+                <div class="country-option" data-code="CAN" data-flag="https://flagcdn.com/w40/ca.png">
+                  <img src="https://flagcdn.com/w40/ca.png" alt="Canada Flag" class="flag">
+                  <div class="country-info">
+                    <span class="country-code-full">CAN </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="header-actionss">
+              <div class="dropdown" id="accountDropdownMobile">
+                <button class="account-btn" onclick="toggleAccountDropdown(this)">
+                  <span class="account-icon"><i class="fa-regular fa-user"></i></span>
+                  <span class="account-text">
+                    <span class="top-line">Join / Sign in</span>
+                    <span class="bottom-line">My DHGate ▾</span>
+                  </span>
+                </button>
+                <div class="dropdown-menu" id="accountMenuMobile">
+                  <div class="dropdown-header">
+                    <div class="promo-banner">
+                      <span class="gift-icon">🎁</span>
+                      <span class="promo-text">$7 off for New users</span>
+                    </div>
+                    <button class="dropdown-btn btn-join">Join free</button>
+                    <button class="dropdown-btn btn-signin">Sign in</button>
+                  </div>
+                  <div class="dropdown-body">
+                    <a href="#" class="dropdown-item">My DHgate</a>
+                    <a href="#" class="dropdown-item">My Orders</a>
+                    <a href="#" class="dropdown-item">My Reviews</a>
+                    <a href="#" class="dropdown-item">My Coupons</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Customer Service</a>
+                  </div>
+                </div>
+              </div>
+
+              <span class="header-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge">1</span>
+              </span>
+              <span class="header-icon">
+                <i class="fa-regular fa-heart"></i>
+                <span class="cart-badge">21</span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="search-container">
+          <input type="text" class="search-input" autofocus placeholder="Search products, brands, or categories...">
+          <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="header-actions">
+          <div class="dropdown" id="accountDropdownDesktop">
+            <button class="account-btn" onclick="toggleAccountDropdown(this)">
+              <span class="account-icon"><i class="fa-regular fa-user"></i></span>
+              <span class="account-text">
+                <span class="top-line">Join / Sign in</span>
+                <span class="bottom-line">My DHGate ▾</span>
+              </span>
+            </button>
+            <div class="dropdown-menu" id="accountMenuDesktop">
+              <div class="dropdown-header">
+                <div class="promo-banner">
+                  <span class="gift-icon">🎁</span>
+                  <span class="promo-text">$7 off for New users</span>
+                </div>
+                <button class="dropdown-btn btn-join">Join free</button>
+                <button class="dropdown-btn btn-signin">Sign in</button>
+              </div>
+              <div class="dropdown-body">
+                <a href="#" class="dropdown-item">My DHgate</a>
+                <a href="#" class="dropdown-item">My Orders</a>
+                <a href="#" class="dropdown-item">My Reviews</a>
+                <a href="#" class="dropdown-item">My Coupons</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">Customer Service</a>
+              </div>
+            </div>
+          </div>
+
+          <span class="header-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge">1</span>
+          </span>
+          <span class="header-icon">
+            <i class="fa-regular fa-heart"></i>
+            <span class="cart-badge">21</span>
+          </span>
+        </div>
+      </div>
+      <section class="all-menus">
+
+        <div class="main-nav">
+          <a href="#" class="nav-link active">ALL CATEGORIES</a>
+          <a href="#" class="nav-link">Flash Deals</a>
+          <a href="#" class="nav-link">Pet Oasis</a>
+          <a href="#" class="nav-link">Just For You</a>
+          <a href="#" class="nav-link">Musthave</a>
+          <a href="#" class="nav-link">Ancient Beauty</a>
+          <a href="#" class="nav-link">Influencers' Picks</a>
+        </div>
+        <button class="shopss-now-btn">SHOP NOW <i class="fa-solid fa-arrow-right"></i> </button>
+      </section>
+
+      <marquee class="sale-marquee-premium" behavior="scroll" direction="left" scrollamount="6">
+        👑 Royal Discounts Up to 70% OFF • 🎁 Free Gift on Orders $99+ • 🚚 Free Express Shipping • 💳 Secure Checkout •
+        ⚡
+        Flash Sale Today • 💎 Premium Quality • 🏆 Member Rewards • 🔥 Hot Deals - Shop Now! and faster availability.
+        Enjoy exclusive discounts, flexible minimum order quantities, and dedicated support for
+        all
+        wholesale partners. We focus on timely delivery, quality assurance, and long-term partnerships to meet your
+        business
+        needs. Whether you are a retailer, distributor, or reseller, our wholesale offers are tailored to maximize
+        profitability
+        while maintaining product excellence and customer satisfaction
+      </marquee>
+    </nav>
+    <section class="slider-section">
+      <div class="slider-container">
+        <div class="slider-wrapper">
+          <div class="slide">
+            <img src="https://t4.ftcdn.net/jpg/02/09/69/27/360_F_209692764_qcZCSwGlVI1doulbmyEWuLhgLXUUuQla.jpg"
+              alt="Shopping Store Interior">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&h=600&fit=crop&q=80"
+              alt="Shopping Store Interior">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1400&h=600&fit=crop&q=80"
+              alt="Fashion Collection">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1400&h=600&fit=crop&q=80"
+              alt="Modern Shopping">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&h=600&fit=crop&q=80"
+              alt="Fashion Accessories">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400&h=600&fit=crop&q=80"
+              alt="Shopping Store Interior">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1400&h=600&fit=crop&q=80"
+              alt="Fashion Collection">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1400&h=600&fit=crop&q=80"
+              alt="Modern Shopping">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&h=600&fit=crop&q=80"
+              alt="Fashion Accessories">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1400&h=600&fit=crop&q=80"
+              alt="Shoe Collection">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1400&h=600&fit=crop&q=80"
+              alt="Product Display">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1400&h=600&fit=crop&q=80"
+              alt="Tech Products">
+          </div>
+          <div class="slide">
+            <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=1400&h=600&fit=crop&q=80"
+              alt="Shopping Bags">
+          </div>
+          <div class="slide">
+            <img src="https://www.poundwholesale.co.uk/media/wysiwyg/what-is-wholesale-img_1.jpg" alt="Luxury Items">
+          </div>
+          <div class="slide">
+            <img src="https://acctivate.com/wp-content/uploads/2022/03/wholesale-tips-feature.png"
+              alt="Online Shopping">
+          </div>
+        </div>
+        <button class="slider-nav prev" aria-label="Previous Slide"><i class="fa-solid fa-angle-left"></i></button>
+        <button class="slider-nav next" aria-label="Next Slide"><i class="fa-solid fa-angle-right"></i></button>
+        <div class="slider-dots"></div>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <!-- ENHANCED Filter Bar with Dropdowns -->
+      <div class="filter-bar">
+        <div class="filter-tabs">
+          <!-- All Products Tab -->
+          <button class="filter-tab active" data-category="all" onclick="filterByMainCategory('all', this)">
+            All Products
+          </button>
+
+          <!-- Electronics with Dropdown -->
+          <div class="filter-tab-container">
+            <button class="filter-tab" data-category="electronics" onclick="filterByMainCategory('electronics', this)">
+              Electronics
+              <span class="arrow-icon" onclick="event.stopPropagation(); toggleCategoryDropdown('electronics', this)">
+                <i class="fa-solid fa-angle-down"></i>
+              </span>
+            </button>
+            <div id="dropdown-electronics" class="category-dropdown">
+              <div class="dropdown-content">
+                <div class="dropdown-column">
+                  <h3>Computers & Laptops</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Laptops', event)">Laptops</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Desktop Computers', event)">Desktop
+                        Computers</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Tablets', event)">Tablets</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Computer Accessories', event)">Computer
+                        Accessories</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Mobile & Accessories</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Smartphones', event)">Smartphones</a>
+                    </li>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Smart Watches', event)">Smart
+                        Watches</a>
+                    </li>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Phone Cases', event)">Phone Cases</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Audio & Video</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Headphones', event)">Headphones</a>
+                    </li>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Speakers', event)">Speakers</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('electronics', 'Cameras', event)">Cameras</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fashion with Dropdown -->
+          <div class="filter-tab-container">
+            <button class="filter-tab" data-category="fashion" onclick="filterByMainCategory('fashion', this)">
+              Fashion
+              <span class="arrow-icon" onclick="event.stopPropagation(); toggleCategoryDropdown('fashion', this)">
+                <i class="fa-solid fa-angle-down"></i>
+              </span>
+            </button>
+            <div id="dropdown-fashion" class="category-dropdown">
+              <div class="dropdown-content">
+                <div class="dropdown-column">
+                  <h3>Men's Fashion</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Men\'s Shirts', event)">Men's Shirts</a>
+                    </li>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Men\'s Pants', event)">Men's Pants</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Men\'s Shoes', event)">Men's Shoes</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Women's Fashion</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Women\'s Dresses', event)">Women's
+                        Dresses</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Women\'s Tops', event)">Women's Tops</a>
+                    </li>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Women\'s Shoes', event)">Women's Shoes</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Accessories</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Bags', event)">Bags</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Watches', event)">Watches</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('fashion', 'Sunglasses', event)">Sunglasses</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Home & Garden with Dropdown -->
+          <div class="filter-tab-container">
+            <button class="filter-tab" data-category="home" onclick="filterByMainCategory('home', this)">
+              Home & Garden
+              <span class="arrow-icon" onclick="event.stopPropagation(); toggleCategoryDropdown('home', this)">
+                <i class="fa-solid fa-angle-down"></i>
+              </span>
+            </button>
+            <div id="dropdown-home" class="category-dropdown">
+              <div class="dropdown-content">
+                <div class="dropdown-column">
+                  <h3>Furniture</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Living Room', event)">Living Room</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Bedroom', event)">Bedroom</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Office', event)">Office</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Home Decor</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Lighting', event)">Lighting</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Wall Art', event)">Wall Art</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Textiles', event)">Textiles</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Garden</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Plants', event)">Plants</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Garden Tools', event)">Garden Tools</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('home', 'Outdoor Furniture', event)">Outdoor
+                        Furniture</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sports with Dropdown -->
+          <div class="filter-tab-container">
+            <button class="filter-tab" data-category="sports" onclick="filterByMainCategory('sports', this)">
+              Sports
+              <span class="arrow-icon" onclick="event.stopPropagation(); toggleCategoryDropdown('sports', this)">
+                <i class="fa-solid fa-angle-down"></i>
+              </span>
+            </button>
+            <div id="dropdown-sports" class="category-dropdown">
+              <div class="dropdown-content">
+                <div class="dropdown-column">
+                  <h3>Fitness Equipment</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Yoga & Pilates', event)">Yoga & Pilates</a>
+                    </li>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Gym Equipment', event)">Gym Equipment</a>
+                    </li>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Cardio', event)">Cardio</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Outdoor Sports</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Cycling', event)">Cycling</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Camping', event)">Camping</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Water Sports', event)">Water Sports</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Team Sports</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Soccer', event)">Soccer</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Basketball', event)">Basketball</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('sports', 'Tennis', event)">Tennis</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beauty with Dropdown -->
+          <div class="filter-tab-container">
+            <button class="filter-tab" data-category="beauty" onclick="filterByMainCategory('beauty', this)">
+              Beauty
+              <span class="arrow-icon" onclick="event.stopPropagation(); toggleCategoryDropdown('beauty', this)">
+                <i class="fa-solid fa-angle-down"></i>
+              </span>
+            </button>
+            <div id="dropdown-beauty" class="category-dropdown">
+              <div class="dropdown-content">
+                <div class="dropdown-column">
+                  <h3>Skincare</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Moisturizers', event)">Moisturizers</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Cleansers', event)">Cleansers</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Serums', event)">Serums</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Makeup</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Foundation', event)">Foundation</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Lipstick', event)">Lipstick</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Eye Makeup', event)">Eye Makeup</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown-column">
+                  <h3>Hair Care</h3>
+                  <ul>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Shampoo', event)">Shampoo</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Styling', event)">Styling Products</a></li>
+                    <li><a href="#" onclick="filterBySubcategory('beauty', 'Treatments', event)">Hair Treatments</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter-sections ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+            <path
+              d="M20 2H4c-.55 0-1 .45-1 1v2c0 .22.07.43.2.6L9 13.33V21a1 1 0 0 0 1 1c.15 0 .31-.04.45-.11l4-2A1 1 0 0 0 15 19v-5.67l5.8-7.73c.13-.17.2-.38.2-.6V3c0-.55-.45-1-1-1m-1 2.67-5.8 7.73c-.13.17-.2.38-.2.6v5.38l-2 1V13c0-.22-.07-.43-.2-.6L5 4.67V4h14z">
+            </path>
+          </svg>
+          <p>Filter</p>
+        </div>
+        <select class="sort-select">
+          <option>Sort by: Featured</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest First</option>
+          <option>Best Selling</option>
+        </select>
+      </div>
+
+      <!-- Active Filters Display -->
+      <div class="active-filters" id="activeFilters"></div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid"></div>
+
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading more products...</p>
+      </div>
+    </section>
+
+    <section class="luxery-section">
+      <div class="luxery-header">
+        <div class="luxery-sub-header">
+          <div class="heads">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#FF6B35">
+              <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
+            </svg>
+            <h2>Price Drop</h2>
+          </div>
+
+          <span>Free Shipping, Save Up to $50!</span>
+        </div>
+        <a href="#" class="view-all-btn">View All <i class="fa-solid fa-angle-right"></i></a>
+      </div>
+
+      <div class="mega-offers">
+        <!-- Product 1 -->
+        <div class="product-cards">
+          <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=400&h=400&fit=crop"
+            alt="Colorful Bags" class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$11.76 <span class="original-prices">$12.38</span></div>
+            <span class="save-badge">Save $0.62</span>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-cards">
+          <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&h=400&fit=crop"
+            alt="Black Blazer" class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$8.00 <span class="original-prices">$9.30</span></div>
+            <span class="save-badge">Save $1.30</span>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-cards">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=400&fit=crop"
+            alt="Pearl Jewelry" class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$8.77</div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-cards">
+          <img src="https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=400&h=400&fit=crop" alt="Laptop"
+            class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$6.15 <span class="original-prices">$7.23</span></div>
+            <span class="save-badge">Save $1.08</span>
+          </div>
+        </div>
+
+        <!-- Product 5 - VIP Badge -->
+        <div class="product-cards">
+          <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=400&h=400&fit=crop" alt="VIP Badge"
+            class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$1.04</div>
+          </div>
+        </div>
+
+        <!-- Product 6 - VIP Link -->
+        <div class="product-cards">
+          <img src="https://www.theprink.in/cdn/shop/files/14_137f4b55-666c-4f7b-8b51-f4cd0c9da97.jpg?v=1769233377"
+            alt="Gift Box" class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$5.00</div>
+            <div class="product-titles">VIP link</div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-cards">
+          <img
+            src="https://image.made-in-china.com/202f0j00VDncMRsFETrC/360-Degree-Rotating-Kids-Shockproof-Tablet-Case-for-Lenovo-Tab-M11-2024.webp"
+            alt="Tablet Case" class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$15.77</div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-cards">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop" alt="Smart Watch"
+            class="product-images">
+          <div class="product-infos">
+            <div class="product-prices">$7.25 <span class="original-prices">$7.63</span></div>
+            <span class="save-badge">Save $0.38</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+      <div class="deal-container">
+        <!-- Product 1 - Sunglasses -->
+        <div class="flash-deals">
+          <h2>Flash Deals</h2>
+          <p>Ends in</p>
+
+          <div class="flash-timer">
+            <div class="timer"> 91</div>
+            <div class="dot-gap">:</div>
+            <div class="timer"> 11</div>
+            <div class="dot-gap">:</div>
+            <div class="timer"> 17</div>
+          </div>
+
+          <a href="#" class="flash-view-all">View All<i class="fa-solid fa-angle-right"></i></a>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-10%</span>
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=400&fit=crop"
+            alt="Luxury Sunglasses" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">New Luxury Desig S...</div>
+            <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+          </div>
+        </div>
+
+        <!-- Product 2 - Hat -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-20%</span>
+          <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop" alt="Stone Hat"
+            class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">Stone Hat Casquett...</div>
+            <div class="product-prices">$14.63 <span class="original-prices">$18.29</span></div>
+          </div>
+        </div>
+
+        <!-- Product 3 - Green Outfit -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-20%</span>
+          <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=400&h=400&fit=crop"
+            alt="Spring Autumn" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">Spring Autumn Win...</div>
+            <div class="product-prices">$43.89 <span class="original-prices">$54.86</span></div>
+          </div>
+        </div>
+
+        <!-- Product 4 - Hair Clips -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTsxeOaxD3UjM_hlLyAeA3UXjXnoBL8Vad9A&s"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/z/08/a0448c37-1343-45cc-b30e-265a0488ab35.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/jc/s/28/68bb5f7b-592f-4eef-a294-ad5145761412.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/j/02/216b5bb3-ef71-4abe-8732-1469d323f22f.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/km/o/17/b1e18155-bb05-4665-9356-b7063e512cf1.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/j/08/d8e0243c-9c6b-470a-982d-5062a9fa0f93.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/s/21/8ce809fc-84d5-47f8-a235-f2f1336c4033.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/s/10/a851dbb9-2753-45e1-91b6-a55bf5560da2.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/s/14/728416e4-e002-4532-b460-dab2e9f56ff4.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/jc/o/02/58c184c0-bfbc-4198-8c19-3077d831eb84.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/g/29/de31a486-dfca-43d3-aa18-3150a0d9bbb7.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-10%</span>
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=400&fit=crop"
+            alt="Luxury Sunglasses" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">New Luxury Desig S...</div>
+            <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+          </div>
+        </div>
+
+        <!-- Product 2 - Hat -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-20%</span>
+          <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=400&fit=crop" alt="Stone Hat"
+            class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">Stone Hat Casquett...</div>
+            <div class="product-prices">$14.63 <span class="original-prices">$18.29</span></div>
+          </div>
+        </div>
+
+        <!-- Product 3 - Green Outfit -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-20%</span>
+          <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=400&h=400&fit=crop"
+            alt="Spring Autumn" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">Spring Autumn Win...</div>
+            <div class="product-prices">$43.89 <span class="original-prices">$54.86</span></div>
+          </div>
+        </div>
+
+        <!-- Product 4 - Hair Clips -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTsxeOaxD3UjM_hlLyAeA3UXjXnoBL8Vad9A&s"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTsxeOaxD3UjM_hlLyAeA3UXjXnoBL8Vad9A&s"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/s/30/f982ee2c-0410-482e-85ea-56a82bb8d34a.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTsxeOaxD3UjM_hlLyAeA3UXjXnoBL8Vad9A&s"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/s/14/79335471-06c8-4cdf-a230-d9d2d90900a3.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/t/20/aa7c6e8a-e633-41d0-9b03-ee7898b20d87.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/y/06/cd9f322a-7d51-456c-90e1-720238c46834.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/n/01/4b68b792-a99a-44cc-84b2-0ec214fcc427.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://www.dhresource.com/webp/m/260x260/f2/albu/g19/M00/18/C5/rBVap2IwUVaAPJCJAAG4iCzmhcM807.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/ys/s/17/433df042-72b8-4d04-a319-ca162e3042d7.JPG"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-5%</span>
+          <img src="https://img4.dhresource.com/webp/m/260x260/f3/albu/jc/j/27/0aa10b16-f56f-4ffe-87dc-4ae5d1dabd11.jpg"
+            alt="Hair Clips" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">DPGHS103 5.1 inch ...</div>
+            <div class="product-prices">$8.31 <span class="original-prices">$8.75</span></div>
+          </div>
+        </div>
+
+        <!-- Product 5 - Blonde Wig -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-56%</span>
+          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=400&fit=crop"
+            alt="Highlight Blonde" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">Highlight Blonde C...</div>
+            <div class="product-prices">$18.53 <span class="original-prices">$42.11</span></div>
+          </div>
+        </div>
+
+        <!-- Product 6 - Wallet -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-52%</span>
+          <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=400&fit=crop"
+            alt="Designer Wallet" class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">designer wallet wo...</div>
+            <div class="product-prices">$64.33 <span class="original-prices">$134.03</span></div>
+          </div>
+        </div>
+
+        <!-- Product 7 - Earbuds -->
+        <div class="product-cards" style="position: relative;">
+          <span class="discount-badge">⚡-24%</span>
+          <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop" alt="TWS Earbuds"
+            class="product-images">
+          <div class="product-infos">
+            <div class="product-titles">TWS Earbuds ANC A...</div>
+            <div class="product-prices">$12.74 <span class="original-prices">$16.77</span></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="top-ranking-products">
+      <section style="margin-bottom: 40px;">
+        <div class="section-headerss">
+          <h2 class="section-title">Top Ranking</h2>
+          <a href="#" class="view-all-btn">View All <i class="fa-solid fa-angle-right"></i> </a>
+        </div>
+        <div class="offers-wrapper">
+
+          <button class="offers-crousal-button offers-left" onclick="offersPage('left')">
+            <span class="nav-arrow">
+              <i class="fa-solid fa-angle-left"></i>
+            </span>
+          </button>
+
+          <div class="left-ranking-product" id="topOffers">
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=400&fit=crop" alt="AirPods"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+
+            <!-- Ranking Item 2 - Belts -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop" alt="Belts"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+
+            <!-- Ranking Item 3 - Bracelets -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=400&fit=crop"
+                alt="Bracelets" class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=400&fit=crop" alt="AirPods"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+
+            <!-- Ranking Item 2 - Belts -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop" alt="Belts"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+            <!-- Ranking Item 4 - Shoes -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" alt="Shoes"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+
+          </div>
+
+          <button class="offers-crousal-button offers-right" onclick="offersPage('right')">
+            <span class="nav-arrow">
+              <i class="fa-solid fa-angle-right"></i>
+            </span>
+          </button>
+
+        </div>
+
+
+      </section>
+
+      <!-- Featured Seller Section -->
+      <section>
+        <div class="section-headerss">
+          <h2 class="section-title">Featured Seller</h2>
+          <a href="#" class="view-all-btn">View All <i class="fa-solid fa-angle-right"></i> </a>
+        </div>
+
+        <div class="offers-wrapper">
+
+          <button class="offers-crousal-button offers-left" onclick="featurePage('left')">
+            <span class="nav-arrow">
+              <i class="fa-solid fa-angle-left"></i>
+            </span>
+          </button>
+
+          <div class="right-ranking-product" id="features">
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=400&h=400&fit=crop"
+                alt="Sneakers" class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=400&h=400&fit=crop"
+                alt="Sneakers" class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+
+            <!-- Seller Item 2 - Bags -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop" alt="Handbags"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+
+            <!-- Seller Item 3 - Shoes Collection -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop" alt="Shoes"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+
+            <!-- Seller Item 4 - Clothing -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=400&h=400&fit=crop"
+                alt="Clothing" class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop" alt="Handbags"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+            <!-- Seller Item 2 - Bags -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop" alt="Handbags"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+            <!-- Seller Item 3 - Shoes Collection -->
+            <div class="ranked-product-cards">
+              <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop" alt="Shoes"
+                class="product-images">
+              <div class="product-infos">
+                <div class="product-titles">New Luxury Desig S...</div>
+                <div class="product-prices">$51.90 <span class="original-prices">$57.67</span></div>
+              </div>
+            </div>
+          </div>
+
+          <button class="offers-crousal-button offers-right" onclick="featurePage('right')">
+            <span class="nav-arrow">
+              <i class="fa-solid fa-angle-right"></i>
+            </span>
+          </button>
+
+        </div>
+
+      </section>
+    </div>
+
+    <section class="daily-deals-section">
+      <!-- Header with Title and Timer -->
+      <div class="deals-header-bar">
+        <div class="deals-title-wrapper">
+          <svg class="flash-icon" viewBox="0 0 24 24" fill="#FF6B35">
+            <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
+          </svg>
+          <h2 class="deals-main-title">Daily Special Offer</h2>
+        </div>
+
+        <div class="countdown-timer-box">
+          <span class="timer-label">End In</span>
+          <div class="timer-digits">
+            <span class="time-unit">70</span>
+            <span class="time-separator">:</span>
+            <span class="time-unit">43</span>
+            <span class="time-separator">:</span>
+            <span class="time-unit">54</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Carousel -->
+      <div class="deals-carousel-wrapper">
+        <button class="carousel-nav-button nav-left" onclick="scrollDeals('left')">
+          <span class="nav-arrow"><i class="fa-solid fa-angle-left"></i></span>
+        </button>
+
+        <div class="deals-scroll-container" id="dealsContainer">
+
+          <!-- Deal Card 1 - Zodiac Charms -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&h=500&fit=crop"
+                alt="Zodiac Charms" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">925 Sterling Silver Gorgeou 14K Gold Plated 12 Constellation Zodiac Charms
+              </h3>
+              <div class="deal-special-tag">Lowest price in 30 days</div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$8.53</span>
+                <div class="discount-arrow-badge">
+                  -10%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 2 - Down Jacket -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=500&h=500&fit=crop"
+                alt="Down Jacket" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Men's Down Luxurious Designer Winter Coat Warm Puffer Jacket</h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">5.0</span>
+                <span class="items-sold-count">76 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$39.24</span>
+                <div class="discount-arrow-badge">
+                  -34%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 3 - Mule Slippers -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500&h=500&fit=crop"
+                alt="Mule Slippers" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Designer Mule Slippers Wrapped Toe Comfort Slides Women Fashion</h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">5.0</span>
+                <span class="items-sold-count">24 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$41.90</span>
+                <div class="discount-arrow-badge">
+                  -34%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 4 - Luxury Bag -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=500&fit=crop" alt="Luxury Bag"
+                class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">2025 New Outdoor Style Luxury Freeze Crossbody Designer Handbag</h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">5.0</span>
+                <span class="items-sold-count">28 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$25.06</span>
+                <div class="discount-arrow-badge">
+                  -34%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 5 - Snow Boots -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=500&h=500&fit=crop"
+                alt="Snow Boots" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Designer shoes Snow boots Women's Winter Warm Ankle Boots Fashion</h3>
+              <div class="deal-special-tag">Lowest price in 30 days</div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$23.14</span>
+                <div class="discount-arrow-badge">
+                  -70%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 6 - Running Shoes -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop"
+                alt="Running Shoes" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Men's Athletic Running Shoes Sports Sneakers Breathable Trainers</h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">4.9</span>
+                <span class="items-sold-count">156 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$32.99</span>
+                <div class="discount-arrow-badge">
+                  -45%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 7 - Smart Watch -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop"
+                alt="Smart Watch" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Smartwatch Fitness Tracker Heart Rate Blood Pressure Monitor Watch</h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">5.0</span>
+                <span class="items-sold-count">89 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$45.88</span>
+                <div class="discount-arrow-badge">
+                  -52%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 8 - Backpack -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop" alt="Backpack"
+                class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Travel Backpack Large Capacity Anti-Theft USB Charging Port Laptop</h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">4.8</span>
+                <span class="items-sold-count">203 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$38.50</span>
+                <div class="discount-arrow-badge">
+                  -40%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 9 - Wireless Earbuds -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&h=500&fit=crop"
+                alt="Wireless Earbuds" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Wireless Earbuds Bluetooth 5.3 Noise Cancelling Headphones Touch Control
+              </h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">4.9</span>
+                <span class="items-sold-count">312 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$28.99</span>
+                <div class="discount-arrow-badge">
+                  -60%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deal Card 10 - Sunglasses -->
+          <div class="deal-card">
+            <div class="deal-image-container">
+              <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&h=500&fit=crop"
+                alt="Sunglasses" class="deal-product-image">
+            </div>
+            <div class="deal-content-area">
+              <h3 class="deal-product-name">Fashion Sunglasses UV400 Protection Polarized Designer Eyewear</h3>
+              <div class="deal-rating-section">
+                <span class="star-rating">★</span>
+                <span class="rating-score">5.0</span>
+                <span class="items-sold-count">145 Sold</span>
+              </div>
+              <div class="deal-price-section">
+                <span class="deal-current-price">$15.90</span>
+                <div class="discount-arrow-badge">
+                  -55%
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="carousel-nav-button nav-right" onclick="scrollDeals('right')">
+          <span class="nav-arrow"><i class="fa-solid fa-angle-right"></i></span>
+        </button>
+      </div>
+    </section>
+    <section class="recommendations-section">
+      <h2 class="recommendations-header">You May Like</h2>
+
+      <!-- Category Navigation -->
+      <div class="category-tabs-wrapper">
+        <button class="scroll-btn left" id="scrollLeft"><i class="fa-solid fa-angle-left"></i></button>
+
+        <div class="category-tabs" id="categoryTabs">
+          <button class="category-pill active">Just For You</button>
+          <button class="category-pill">Sports & Outdoors</button>
+          <button class="category-pill">Shoes & Accessories</button>
+          <button class="category-pill">Apparel</button>
+          <button class="category-pill">Watches</button>
+          <button class="category-pill">Fashion Accessories</button>
+          <button class="category-pill">Bags & Accessories</button>
+          <button class="category-pill">Jewelry</button>
+          <button class="category-pill">Home & Garden</button>
+          <button class="category-pill">Health & Beauty</button>
+          <button class="category-pill">Baby, Kids & Maternity</button>
+          <button class="category-pill">Arts & Crafts</button>
+        </div>
+
+        <button class="scroll-btn right" id="scrollRight"><i class="fa-solid fa-angle-right"></i></button>
+      </div>
+
+
+      <!-- Products Grid -->
+      <div class="items-showcase">
+
+        <!-- Item 1 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500&h=500&fit=crop"
+            alt="Casual Shoes" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Casual Shoes Slip-On Low Top Canvas Sneakers</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $34.22</span>
+              <span class="previous-cost"> $68.43</span>
+            </div>
+            <span class="discount-label">$2 off $39+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=500&h=500&fit=crop"
+            alt="Toddler Sneakers" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Toddler Sneakers 3 Kids shoes Boys Girls Athletic Running</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $29.92</span>
+              <span class="previous-cost"> $58.67</span>
+            </div>
+            <span class="discount-label">$2 off $25+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1635514569146-9a9607ecf303?w=500&h=500&fit=crop"
+            alt="Bluetooth Scanner" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Bluetooth Car Scanner Tool OBD2 Diagnostic Code Reader</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $8.41</span>
+              <span class="previous-cost"> $9.90</span>
+            </div>
+            <span class="discount-label">$10 off $200+</span>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=500&h=500&fit=crop" alt="RGB Lights"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">RGB 3D Night Lights Base LED Lamp 160 Pack Remote Control</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $412.38</span>
+            </div>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=500&h=500&fit=crop"
+            alt="Wedding Dress" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Backless 2024 Boho Wedding Dresses Lace Appliques Beach Bridal Gown</h3>
+            <div class="pricing-container">
+              <span class="current-cost ">$139.08</span>
+              <span class="previous-cost">$146.40</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop"
+            alt="Egg Shape Alarm" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">130db Egg Shape Self Defense Personal Safety Alarm Keychain</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $2.25</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop" alt="Running Shoes"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Men's Sports Running Shoes Breathable Athletic Trainers</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $45.99</span>
+              <span class="previous-cost"> $89.99</span>
+            </div>
+            <span class="discount-label">$5 off $50+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop" alt="Smart Watch"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Smartwatch Fitness Tracker Heart Rate Monitor Sport Watch</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $56.88</span>
+              <span class="previous-cost"> $125.00</span>
+            </div>
+            <span class="discount-label">$3 off $30+</span>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 9 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop" alt="Leather Belt"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Men's Genuine Leather Belt Classic Dress Belt with Buckle</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $18.45</span>
+              <span class="previous-cost"> $35.90</span>
+            </div>
+            <span class="discount-label">$2 off $20+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 10 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&h=500&fit=crop"
+            alt="Gold Bracelet" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">18K Gold Plated Bracelet Fashion Jewelry Bangle Women</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $24.99</span>
+              <span class="previous-cost"> $49.99</span>
+            </div>
+            <span class="discount-label">50% OFF</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 11 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500&h=500&fit=crop"
+            alt="Wireless Earbuds" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Wireless Earbuds Bluetooth 5.3 Headphones Noise Cancelling</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $32.50</span>
+              <span class="previous-cost"> $79.99</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 12 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&h=500&fit=crop" alt="Handbag"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Women's Luxury Handbag Designer Shoulder Bag Tote</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $68.90</span>
+              <span class="previous-cost"> $135.00</span>
+            </div>
+            <span class="discount-label">$10 off $100+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 13 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500&h=500&fit=crop"
+            alt="Fashion Sunglasses" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Vintage Cat Eye Sunglasses Women Fashion UV400 Protection</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $12.99</span>
+              <span class="previous-cost"> $28.50</span>
+            </div>
+            <span class="discount-label">$1 off $15+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 14 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=500&fit=crop"
+            alt="Men's T-Shirt" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Men's Cotton T-Shirt Casual Crew Neck Short Sleeve Top</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $15.49</span>
+              <span class="previous-cost"> $32.00</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 15 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?w=500&h=500&fit=crop" alt="Yoga Mat"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Premium Yoga Mat Non-Slip Exercise Fitness Pilates Workout</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $28.75</span>
+              <span class="previous-cost"> $55.00</span>
+            </div>
+            <span class="discount-label">$5 off $40+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 16 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500&h=500&fit=crop" alt="Laptop Bag"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Business Laptop Bag 15.6 inch Professional Briefcase</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $42.30</span>
+              <span class="previous-cost"> $85.00</span>
+            </div>
+            <span class="discount-label">$8 off $70+</span>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 17 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?w=500&h=500&fit=crop"
+            alt="Coffee Maker" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Automatic Coffee Maker Programmable Drip Coffee Machine</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $89.99</span>
+              <span class="previous-cost"> $149.99</span>
+            </div>
+            <span class="discount-label">$10 off $120+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 18 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop" alt="Headphones"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Over-Ear Headphones Wireless Bluetooth HiFi Stereo Sound</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $75.88</span>
+              <span class="previous-cost"> $159.00</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 19 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=500&h=500&fit=crop" alt="Sneakers"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Women's Fashion Sneakers Lightweight Walking Shoes Casual</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $39.95</span>
+              <span class="previous-cost"> $72.00</span>
+            </div>
+            <span class="discount-label">$4 off $50+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 20 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1485230405346-71acb9518d9c?w=500&h=500&fit=crop"
+            alt="Kitchen Knife Set" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Professional Kitchen Knife Set 8-Piece Stainless Steel</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $54.20</span>
+              <span class="previous-cost"> $110.00</span>
+            </div>
+            <span class="discount-label">$6 off $80+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 21 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&h=500&fit=crop" alt="Running Shoes"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Men's Running Shoes Athletic Breathable Sport Sneakers</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $48.60</span>
+              <span class="previous-cost"> $95.00</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 22 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&h=500&fit=crop"
+            alt="Gaming Mouse" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">RGB Gaming Mouse Wired Programmable 7 Buttons DPI Adjustable</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $19.99</span>
+              <span class="previous-cost"> $45.00</span>
+            </div>
+            <span class="discount-label">$3 off $25+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 23 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=500&h=500&fit=crop" alt="Face Cream"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Anti-Aging Face Cream Moisturizer Hyaluronic Acid Vitamin C</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $26.50</span>
+              <span class="previous-cost"> $58.00</span>
+            </div>
+            <span class="discount-label">$4 off $35+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 24 -->
+        <div class="showcase-item">
+          <img
+            src="https://rukminim2.flixcart.com/image/480/640/xif0q/wall-clock/v/2/g/analog-wall-clock-for-home-24-amham235-analog-asian-multistore-original-imagg55c6qxgwt5z.jpeg?q=90"
+            alt="Wall Clock" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Modern Wall Clock Silent Non-Ticking Decorative Home Office</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $22.80</span>
+              <span class="previous-cost"> $48.00</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 25 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=500&h=500&fit=crop" alt="Desk Lamp"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">LED Desk Lamp USB Rechargeable Touch Control Dimmable</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $34.95</span>
+              <span class="previous-cost"> $69.99</span>
+            </div>
+            <span class="discount-label">$5 off $50+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 26 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=500&h=500&fit=crop" alt="Phone Case"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Silicone Phone Case Shockproof Protective Cover with Ring</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $8.99</span>
+              <span class="previous-cost"> $19.99</span>
+            </div>
+            <span class="discount-label">$2 off $15+</span>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 27 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=500&h=500&fit=crop"
+            alt="Water Bottle" class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Insulated Water Bottle Stainless Steel 32oz Double Wall</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $24.99</span>
+              <span class="previous-cost"> $49.99</span>
+            </div>
+            <span class="discount-label">$3 off $30+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 28 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&h=500&fit=crop" alt="High Tops"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Canvas High Top Sneakers Casual Lace Up Shoes Unisex</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $36.75</span>
+              <span class="previous-cost"> $68.00</span>
+            </div>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 29 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1556306535-38febf6782e7?w=500&h=500&fit=crop" alt="Makeup Brushes"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Professional Makeup Brush Set 12 Pieces Synthetic Hair</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $18.90</span>
+              <span class="previous-cost"> $42.00</span>
+            </div>
+            <span class="discount-label">$2 off $25+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 30 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1553456558-aff63285bdd1?w=500&h=500&fit=crop" alt="Backpack"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Travel Backpack Large Capacity USB Charging Port Laptop</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $52.40</span>
+              <span class="previous-cost"> $105.00</span>
+            </div>
+            <span class="discount-label">$8 off $80+</span>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 31 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&h=500&fit=crop" alt="Tote Bags"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Reusable Canvas Tote Bag Heavy Duty Shopping Beach Bags</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $11.25</span>
+              <span class="previous-cost"> $25.00</span>
+            </div>
+            <span class="discount-label">$1 off $15+</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 32 -->
+        <div class="showcase-item">
+          <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=500&h=500&fit=crop" alt="Wrist Watch"
+            class="item-visual">
+          <div class="item-details">
+            <h3 class="item-heading">Luxury Men's Watch Stainless Steel Quartz Analog Display</h3>
+            <div class="pricing-container">
+              <span class="current-cost"> $125.99</span>
+              <span class="previous-cost"> $280.00</span>
+            </div>
+            <span class="discount-label">$15 off $150+</span>
+            <span class="shipping-notice">Free Shipping</span>
+            <div class="action-button">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="section-header">
+        <h2>Why Choose Us</h2>
+        <p>Everything you need for successful wholesale distribution</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <!-- <img src="https://cdn-icons-png.flaticon.com/128/9857/9857996.png" alt="" height="100%" width="100%"> -->
+            <img src="https://cdn.dribbble.com/userupload/41863424/file/original-a0b9501537e33c070370cb065aa4475e.gif"
+              alt="" height="100%" width="100%">
+          </div>
+          <h3>Secure Payment</h3>
+          <p>100% secure transactions with multiple payment options and buyer protection</p>
+          <button class="learn-more-btn">Learn more <i class="fa-solid fa-angle-right"></i></button>
+
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <!-- <img src="https://cdn-icons-png.flaticon.com/128/5163/5163977.png" alt="" height="100%" width="100%"> -->
+            <img src="https://cheapcourier.com.br/assets/anim01-id3GIBIU.gif" alt="" height="100%" width="100%">
+          </div>
+          <h3>Global Shipping</h3>
+          <p>Worldwide delivery with real-time tracking and insurance coverage</p>
+          <button class="learn-more-btn">Learn more <i class="fa-solid fa-angle-right"></i></button>
+
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <!-- <img src="https://cdn-icons-png.flaticon.com/128/14670/14670062.png" alt="" height="100%" width="100%"> -->
+            <img
+              src="https://media.licdn.com/dms/image/v2/D4D12AQEGH0grNgGe3w/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1663428061606?e=2147483647&v=beta&t=jD6Gbx_YRFNcTGidz6YRLmzgnwEzaItE02s0kR1UPRA"
+              alt="" height="100%" width="100%">
+          </div>
+          <h3>Inventory Management</h3>
+          <p>Real-time stock updates and automated inventory tracking system</p>
+          <button class="learn-more-btn">Learn more <i class="fa-solid fa-angle-right"></i></button>
+
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <!-- <img src="https://cdn-icons-png.flaticon.com/128/9662/9662419.png" alt="" height="100%" width="100%"> -->
+            <img src="https://falconemergency.wordpress.com/wp-content/uploads/2017/05/call_us_-24x7.gif" alt=""
+              height="100%" width="100%">
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock customer service to assist with your orders</p>
+          <button class="learn-more-btn">Learn more <i class="fa-solid fa-angle-right"></i></button>
+
+        </div>
+      </div>
+    </section>
+    <section class="testimonials">
+      <div class="section-header">
+        <h2>What Our Clients Say</h2>
+        <p>Trusted by thousands of businesses worldwide</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">JD</div>
+            <div class="testimonial-info">
+              <h4>John Davis</h4>
+              <p>Retail Store Owner</p>
+            </div>
+          </div>
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"WholeSale Hub has transformed our business operations. The inventory management
+            system is exceptional!"</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">SM</div>
+            <div class="testimonial-info">
+              <h4>Sarah Martinez</h4>
+              <p>E-commerce Manager</p>
+            </div>
+          </div>
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"The order tracking feature is a game-changer. Our customers love the real-time
+            updates!"</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="testimonial-avatar">RK</div>
+            <div class="testimonial-info">
+              <h4>Robert Kim</h4>
+              <p>Distribution Manager</p>
+            </div>
+          </div>
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"Professional service, competitive prices, and reliable delivery. Highly
+            recommended!"</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-section">
+      <div class="newsletter-content">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get the latest deals, new arrivals, and exclusive offers</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email address">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>WholeSale Hub</h3>
+          <p style="color: #bbb; line-height: 1.8;">Your trusted partner in wholesale distribution. Quality products,
+            competitive prices, and exceptional service.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#wholesale">Wholesale</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Customer Service</h3>
+          <ul>
+            <li><a href="#tracking">Track Order</a></li>
+            <li><a href="#returns">Returns & Refunds</a></li>
+            <li><a href="#shipping">Shipping Info</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>📧 support@wholesalehub.com</li>
+            <li><i class="fa-solid fa-phone"></i> +1 (555) 123-4567</li>
+            <li><i class="fa-solid fa-location-dot"></i> 123 Business St, City</li>
+            <li><i class="fa-regular fa-circle-question"></i> 24/7 Support</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 WholeSale Hub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+  <!-- ❤️ -->
+  <!-- Order tracking floating widget -->
+  <div class="tracking-widget" aria-hidden="false">
+    <button class="tracking-widget-button" id="openTrackingBtn" aria-label="Track Order">
+      <img src="https://cdn-icons-png.flaticon.com/128/8817/8817199.png" alt="">
+    </button>
+  </div>
+
+  <div class="tracking-modal-backdrop" id="trackingBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="tracking-modal" role="document">
+      <span class="close-x" id="closeTracking">✕</span>
+      <h3>Track Your Order</h3>
+      <p class="small">Enter your order number to see the current status.</p>
+      <form id="trackingForm" class="tracking-form">
+        <input type="text" id="orderNumberInput" placeholder="Order number (e.g. ORD12345)" aria-label="Order number">
+        <button type="submit" id="trackBtn">Track</button>
+      </form>
+      <div class="tracking-result" id="trackingResult" aria-live="polite"></div>
+    </div>
+  </div>
+  <script>
+    // Product Data
+    const productsData = [
+      // Electronics
+      { id: 1, category: 'electronics', subcategory: 'Headphones', title: 'Wireless Bluetooth Headphones Pro', price: '$24.99', moq: 'MOQ: 100', rating: 4.8, reviews: 2341, badge: 'new', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop' },
+      { id: 2, category: 'electronics', subcategory: 'Smart Watches', title: 'Smart Watch Series 8 Pro', price: '$89.99', moq: 'MOQ: 50', rating: 4.9, reviews: 1876, badge: 'hot', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop' },
+      { id: 3, category: 'electronics', subcategory: 'Computer Accessories', title: 'USB-C Fast Charging Cable 6ft', price: '$4.99', moq: 'MOQ: 500', rating: 4.6, reviews: 5432, badge: null, image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&h=400&fit=crop' },
+      { id: 4, category: 'electronics', subcategory: 'Speakers', title: 'Portable Bluetooth Speaker Waterproof', price: '$34.99', moq: 'MOQ: 150', rating: 4.7, reviews: 3210, badge: 'sale', image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop' },
+      { id: 5, category: 'electronics', subcategory: 'Computer Accessories', title: 'Wireless Gaming Mouse RGB', price: '$29.99', moq: 'MOQ: 200', rating: 4.8, reviews: 1654, badge: 'new', image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop' },
+      { id: 6, category: 'electronics', subcategory: 'Laptops', title: 'Gaming Laptop 16GB RAM', price: '$899.99', moq: 'MOQ: 25', rating: 4.9, reviews: 892, badge: 'hot', image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&h=400&fit=crop' },
+      { id: 7, category: 'electronics', subcategory: 'Smartphones', title: 'Flagship Smartphone 128GB', price: '$699.99', moq: 'MOQ: 30', rating: 4.8, reviews: 1523, badge: 'new', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop' },
+
+      // Fashion
+      { id: 16, category: 'fashion', subcategory: 'Men\'s Shirts', title: 'Premium Cotton T-Shirt Pack', price: '$7.99', moq: 'MOQ: 500', rating: 4.7, reviews: 6543, badge: 'new', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop' },
+      { id: 17, category: 'fashion', subcategory: 'Men\'s Pants', title: 'Slim Fit Denim Jeans', price: '$24.99', moq: 'MOQ: 300', rating: 4.8, reviews: 3456, badge: 'hot', image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=400&fit=crop' },
+      { id: 18, category: 'fashion', subcategory: 'Women\'s Dresses', title: 'Summer Floral Dress', price: '$34.99', moq: 'MOQ: 200', rating: 4.9, reviews: 2876, badge: 'sale', image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop' },
+      { id: 19, category: 'fashion', subcategory: 'Men\'s Shoes', title: 'Casual Sneakers Unisex', price: '$34.99', moq: 'MOQ: 200', rating: 4.7, reviews: 4321, badge: null, image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop' },
+      { id: 20, category: 'fashion', subcategory: 'Bags', title: 'Leather Backpack Premium', price: '$59.99', moq: 'MOQ: 150', rating: 4.8, reviews: 1987, badge: 'new', image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop' },
+      { id: 21, category: 'fashion', subcategory: 'Sunglasses', title: 'Sunglasses UV Protection', price: '$14.99', moq: 'MOQ: 350', rating: 4.5, reviews: 1987, badge: null, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop' },
+      { id: 22, category: 'fashion', subcategory: 'Watches', title: 'Smart Fitness Watch', price: '$79.99', moq: 'MOQ: 100', rating: 4.7, reviews: 2341, badge: 'hot', image: 'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400&h=400&fit=crop' },
+
+      // Home & Garden
+      { id: 31, category: 'home', subcategory: 'Living Room', title: 'Modern Sofa 3-Seater', price: '$449.99', moq: 'MOQ: 50', rating: 4.8, reviews: 876, badge: 'new', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop' },
+      { id: 32, category: 'home', subcategory: 'Lighting', title: 'LED Desk Lamp Adjustable', price: '$24.99', moq: 'MOQ: 200', rating: 4.7, reviews: 1876, badge: null, image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&h=400&fit=crop' },
+      { id: 33, category: 'home', subcategory: 'Textiles', title: 'Throw Pillow Covers Set of 4', price: '$18.99', moq: 'MOQ: 350', rating: 4.6, reviews: 3456, badge: 'sale', image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&h=400&fit=crop' },
+      { id: 34, category: 'home', subcategory: 'Wall Art', title: 'Abstract Canvas Wall Art', price: '$39.99', moq: 'MOQ: 120', rating: 4.8, reviews: 1234, badge: 'hot', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH7brAWbDmjQMJ4s84Zmslj5qm7Ecp-Ll2lg&s' },
+      { id: 35, category: 'home', subcategory: 'Plants', title: 'Indoor Plant Collection', price: '$29.99', moq: 'MOQ: 200', rating: 4.7, reviews: 2109, badge: null, image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&h=400&fit=crop' },
+      { id: 36, category: 'home', subcategory: 'Garden Tools', title: 'Garden Tool Set 10-Piece', price: '$44.99', moq: 'MOQ: 150', rating: 4.6, reviews: 987, badge: 'sale', image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=400&fit=crop' },
+      { id: 18, category: 'fashion', subcategory: 'Women\'s Dresses', title: 'Summer Floral Dress', price: '$34.99', moq: 'MOQ: 200', rating: 4.9, reviews: 2876, badge: 'sale', image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=400&fit=crop' },
+      { id: 19, category: 'fashion', subcategory: 'Men\'s Shoes', title: 'Casual Sneakers Unisex', price: '$34.99', moq: 'MOQ: 200', rating: 4.7, reviews: 4321, badge: null, image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop' },
+      { id: 20, category: 'fashion', subcategory: 'Bags', title: 'Leather Backpack Premium', price: '$59.99', moq: 'MOQ: 150', rating: 4.8, reviews: 1987, badge: 'new', image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop' },
+      { id: 21, category: 'fashion', subcategory: 'Sunglasses', title: 'Sunglasses UV Protection', price: '$14.99', moq: 'MOQ: 350', rating: 4.5, reviews: 1987, badge: null, image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop' },
+      { id: 22, category: 'fashion', subcategory: 'Watches', title: 'Smart Fitness Watch', price: '$79.99', moq: 'MOQ: 100', rating: 4.7, reviews: 2341, badge: 'hot', image: 'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400&h=400&fit=crop' },
+      // Sports
+      { id: 41, category: 'sports', subcategory: 'Yoga & Pilates', title: 'Yoga Mat Non-Slip 6mm', price: '$19.99', moq: 'MOQ: 300', rating: 4.7, reviews: 3456, badge: 'hot', image: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400&h=400&fit=crop' },
+      { id: 42, category: 'sports', subcategory: 'Gym Equipment', title: 'Resistance Bands Set of 5', price: '$16.99', moq: 'MOQ: 400', rating: 4.8, reviews: 2765, badge: null, image: 'https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=400&h=400&fit=crop' },
+      { id: 43, category: 'sports', subcategory: 'Cardio', title: 'Jump Rope Speed Training', price: '$9.99', moq: 'MOQ: 600', rating: 4.7, reviews: 1987, badge: null, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=400&fit=crop' },
+      { id: 44, category: 'sports', subcategory: 'Soccer', title: 'Soccer Ball Official Size', price: '$22.99', moq: 'MOQ: 280', rating: 4.7, reviews: 3210, badge: 'sale', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBleb-6MznIhDlYQgw4PB7CoFcY4JqKFM6sQ&s' },
+      { id: 45, category: 'sports', subcategory: 'Basketball', title: 'Basketball Indoor/Outdoor', price: '$27.99', moq: 'MOQ: 250', rating: 4.7, reviews: 2345, badge: 'new', image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=400&fit=crop' },
+      { id: 46, category: 'sports', subcategory: 'Tennis', title: 'Tennis Racket Professional', price: '$64.99', moq: 'MOQ: 100', rating: 4.9, reviews: 1234, badge: 'hot', image: 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=400&h=400&fit=crop' },
+      { id: 47, category: 'sports', subcategory: 'Cycling', title: 'Cycling Gloves Padded', price: '$17.99', moq: 'MOQ: 350', rating: 4.6, reviews: 1654, badge: null, image: 'https://images.unsplash.com/photo-1583425423320-2386622cd2e4?w=400&h=400&fit=crop' },
+
+      // Beauty
+      { id: 51, category: 'beauty', subcategory: 'Moisturizers', title: 'Face Moisturizer SPF 30', price: '$24.99', moq: 'MOQ: 300', rating: 4.8, reviews: 3456, badge: 'hot', image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=400&fit=crop' },
+      { id: 52, category: 'beauty', subcategory: 'Foundation', title: 'Liquid Foundation Matte', price: '$29.99', moq: 'MOQ: 250', rating: 4.7, reviews: 2109, badge: 'new', image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=400&h=400&fit=crop' },
+      { id: 53, category: 'beauty', subcategory: 'Lipstick', title: 'Matte Lipstick Set 6 Colors', price: '$19.99', moq: 'MOQ: 350', rating: 4.6, reviews: 2765, badge: 'sale', image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop' },
+      { id: 43, category: 'sports', subcategory: 'Cardio', title: 'Jump Rope Speed Training', price: '$9.99', moq: 'MOQ: 600', rating: 4.7, reviews: 1987, badge: null, image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=400&fit=crop' },
+      { id: 44, category: 'sports', subcategory: 'Soccer', title: 'Soccer Ball Official Size', price: '$22.99', moq: 'MOQ: 280', rating: 4.7, reviews: 3210, badge: 'sale', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBleb-6MznIhDlYQgw4PB7CoFcY4JqKFM6sQ&s' },
+      { id: 45, category: 'sports', subcategory: 'Basketball', title: 'Basketball Indoor/Outdoor', price: '$27.99', moq: 'MOQ: 250', rating: 4.7, reviews: 2345, badge: 'new', image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=400&fit=crop' },
+      { id: 46, category: 'sports', subcategory: 'Tennis', title: 'Tennis Racket Professional', price: '$64.99', moq: 'MOQ: 100', rating: 4.9, reviews: 1234, badge: 'hot', image: 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=400&h=400&fit=crop' },
+      { id: 47, category: 'sports', subcategory: 'Cycling', title: 'Cycling Gloves Padded', price: '$17.99', moq: 'MOQ: 350', rating: 4.6, reviews: 1654, badge: null, image: 'https://images.unsplash.com/photo-1583425423320-2386622cd2e4?w=400&h=400&fit=crop' },
+      { id: 54, category: 'beauty', subcategory: 'Shampoo', title: 'Argan Oil Shampoo 500ml', price: '$18.99', moq: 'MOQ: 400', rating: 4.8, reviews: 1654, badge: null, image: 'https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&h=400&fit=crop' },
+      { id: 55, category: 'beauty', subcategory: 'Cleansers', title: 'Facial Cleanser Foam', price: '$14.99', moq: 'MOQ: 450', rating: 4.7, reviews: 2876, badge: 'new', image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&h=400&fit=crop' }, {
+        id: 56,
+        category: "electronics",
+        subcategory: "Headphones",
+        title: "Wireless Bluetooth Headphones Pro",
+        price: "$24.99",
+        moq: "MOQ: 100",
+        rating: 4.8,
+        reviews: 2341,
+        badge: "new",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop"
+      },
+      {
+        id: 57,
+        category: "electronics",
+        subcategory: "Smart Watch",
+        title: "Fitness Smart Watch Series X",
+        price: "$49.99",
+        moq: "MOQ: 50",
+        rating: 4.6,
+        reviews: 1820,
+        badge: "hot",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop"
+      },
+      {
+        id: 58,
+        category: "electronics",
+        subcategory: "Earbuds",
+        title: "Noise Cancelling Wireless Earbuds",
+        price: "$19.99",
+        moq: "MOQ: 200",
+        rating: 4.5,
+        reviews: 2987,
+        badge: "sale",
+        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop"
+      },
+      {
+        id: 59,
+        category: "electronics",
+        subcategory: "Speakers",
+        title: "Portable Bluetooth Speaker",
+        price: "$29.99",
+        moq: "MOQ: 80",
+        rating: 4.7,
+        reviews: 1642,
+        badge: "new",
+        image: "https://m.media-amazon.com/images/I/71Cmb+NrNUL._AC_UF1000,1000_QL80_.jpg"
+      },
+      {
+        id: 60,
+        category: "electronics",
+        subcategory: "Cameras",
+        title: "4K Action Camera Waterproof",
+        price: "$59.99",
+        moq: "MOQ: 30",
+        rating: 4.4,
+        reviews: 1109,
+        badge: "hot",
+        image: "https://m.media-amazon.com/images/I/51yyQiEVvNL._AC_UF1000,1000_QL80_.jpg"
+      },
+      {
+        id: 61,
+        category: "electronics",
+        subcategory: "Power Banks",
+        title: "20000mAh Fast Charging Power Bank",
+        price: "$22.99",
+        moq: "MOQ: 150",
+        rating: 4.6,
+        reviews: 2014,
+        badge: "sale",
+        image: "https://www.lifelongindiaonline.com/cdn/shop/files/1_b42a1699-cc61-456e-b272-45153be1ea2e.jpg?v=1752144756"
+      },
+      {
+        id: 62,
+        category: "electronics",
+        subcategory: "Chargers",
+        title: "65W USB-C Fast Charger",
+        price: "$18.99",
+        moq: "MOQ: 300",
+        rating: 4.7,
+        reviews: 1899,
+        badge: "new",
+        image: "https://images.unsplash.com/photo-1587033411391-5d9e51cce126?w=400&h=400&fit=crop"
+      },
+      {
+        id: 63,
+        category: "electronics",
+        subcategory: "Keyboards",
+        title: "RGB Mechanical Gaming Keyboard",
+        price: "$39.99",
+        moq: "MOQ: 40",
+        rating: 4.8,
+        reviews: 2560,
+        badge: "hot",
+        image: "https://m.media-amazon.com/images/I/71att1lBOlL._AC_UF1000,1000_QL80_.jpg"
+      },
+      {
+        id: 64,
+        category: "electronics",
+        subcategory: "Mouse",
+        title: "Wireless Ergonomic Mouse",
+        price: "$14.99",
+        moq: "MOQ: 200",
+        rating: 4.5,
+        reviews: 1433,
+        badge: "sale",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbzqLKM-mA4H-kP-cjNqI397bYuu7fsEn-3g&s"
+      },
+      {
+        id: 65,
+        category: "electronics",
+        subcategory: "Monitors",
+        title: "27-inch Full HD LED Monitor",
+        price: "$129.99",
+        moq: "MOQ: 20",
+        rating: 4.7,
+        reviews: 987,
+        badge: "new",
+        image: "https://rukminim2.flixcart.com/image/480/640/xif0q/monitor/m/n/j/ka270-e-full-hd-27-2023-um-hx0si-e01-acer-original-imagwyh3e5xjjdpx.jpeg?q=90"
+      },
+
+      // ---- 20 more items follow same structure ----
+
+      {
+        id: 66,
+        category: "electronics",
+        subcategory: "Projectors",
+        title: "Mini Portable Home Projector",
+        price: "$89.99",
+        moq: "MOQ: 25",
+        rating: 4.6,
+        reviews: 1123,
+        badge: "hot",
+        image: "https://images-cdn.ubuy.co.in/689f71b57a68df87f208e66c-mini-portable-projector-4k-1080p.jpg"
+      }
+
+    ];
+
+    // State Management
+    let currentCategory = 'all';
+    let currentSubcategory = null;
+
+    // Initialize products on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProducts('all');
+    });
+
+    // Load and Display Products
+    function loadProducts(filter = 'all', subcategory = null) {
+      const grid = document.getElementById('productsGrid');
+      let filtered = productsData;
+
+      if (filter !== 'all') {
+        filtered = filtered.filter(p => p.category === filter);
+        if (subcategory) {
+          filtered = filtered.filter(p => p.subcategory === subcategory);
+        }
+      }
+
+      grid.innerHTML = filtered.map(product => `
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="${product.image}" alt="${product.title}" loading="lazy">
+            ${product.badge ? `<span class="product-badge ${product.badge}">${product.badge}</span>` : ''}
+            <div class="product-wishlist"><i class="fa-regular fa-heart"></i></div>
+           
+          </div>
+          <div class="product-info">
+            <div class="product-category">${product.category}</div>
+            <div class="product-title">${product.title}</div>
+            <div class="product-rating">
+              <span class="star">${'<i class="fa-solid fa-star"></i>'.repeat(Math.floor(product.rating))}</span>
+              <span class="rating-count">(${product.reviews})</span>
+            </div>
+            <div class="product-pricing">
+                <div class="value">
+ <div class="product-price">${product.price}</div>
+              <div class="product-less">$255</div>
+              <div class="product-discount">70%</div>
+                  </div>
+             
+              <div class="product-moq">${product.moq}</div>
+            </div>
+            <div class="product-actions">
+              <button class="btn-add-cart">Add to Cart</button>
+              <button class="btn-quick-view">👁️</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter by Main Category (clicking category button)
+    function filterByMainCategory(category, button) {
+      closeAllCategoryDropdowns();
+
+      // Update active button
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      button.classList.add('active');
+
+      currentCategory = category;
+      currentSubcategory = null;
+
+      loadProducts(category);
+      updateActiveFilters();
+
+      // Scroll to products
+      document.querySelector('.products-section')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    // Filter by Subcategory (clicking dropdown links)
+    function filterBySubcategory(category, subcategory, event) {
+      event.preventDefault();
+
+      currentCategory = category;
+      currentSubcategory = subcategory;
+
+      // Update active button
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.dataset.category === category) {
+          tab.classList.add('active');
+        }
+      });
+
+      loadProducts(category, subcategory);
+      closeAllCategoryDropdowns();
+      updateActiveFilters();
+    }
+
+    // Toggle Category Dropdown
+    function toggleCategoryDropdown(category, iconElement) {
+      const dropdown = document.getElementById(`dropdown-${category}`);
+      const isOpen = dropdown.classList.contains('show');
+
+      // Close all dropdowns first
+      closeAllCategoryDropdowns();
+
+      if (!isOpen) {
+        dropdown.classList.add('show');
+        iconElement.classList.add('open');
+      }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      const likes = document.querySelectorAll(".product-wishlist");
+
+      likes.forEach((like) => {
+        like.addEventListener("click", () => {
+          const icon = like.querySelector("i");
+
+          icon.classList.toggle("fa-regular");
+          icon.classList.toggle("fa-solid");
+        });
+      });
+    });
+
+    // Close All Category Dropdowns
+    function closeAllCategoryDropdowns() {
+      document.querySelectorAll('.category-dropdown').forEach(menu => {
+        menu.classList.remove('show');
+      });
+      document.querySelectorAll('.arrow-icon').forEach(icon => {
+        icon.classList.remove('open');
+      });
+    }
+
+    // Update Active Filters Display
+    function updateActiveFilters() {
+      const container = document.getElementById('activeFilters');
+      container.innerHTML = '';
+
+      // helper function to capitalize first letter
+      function capitalize(text) {
+        if (!text) return "";
+        return text.charAt(0).toUpperCase() + text.slice(1);
+      }
+
+      if (currentCategory !== 'all') {
+        const tag = document.createElement('div');
+        tag.className = 'active-filter-tag';
+
+        const label = currentSubcategory
+          ? capitalize(currentSubcategory)
+          : capitalize(currentCategory);
+
+        tag.innerHTML = `
+    ${label}
+    <span class="remove" onclick="clearFilters()"><i class="fa-solid fa-xmark"></i></span>
+  `;
+
+        container.appendChild(tag);
+      }
+
+    }
+
+    // Clear Filters
+    function clearFilters() {
+      currentCategory = 'all';
+      currentSubcategory = null;
+
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.dataset.category === 'all') {
+          tab.classList.add('active');
+        }
+      });
+
+      loadProducts('all');
+      updateActiveFilters();
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('.filter-tab-container') && !event.target.closest('.category-dropdown')) {
+        closeAllCategoryDropdowns();
+      }
+      if (!event.target.closest('#accountDropdown')) {
+        document.getElementById('accountMenu').style.display = 'none';
+      }
+      if (!event.target.closest('.country-selector')) {
+        document.querySelector('.dropdown-menuss').classList.remove('show');
+        document.querySelector('.arrow').classList.remove('up');
+      }
+    });
+
+    // Account Dropdown Toggle
+    function toggleAccountDropdown(element) {
+      console.log("hello");
+
+      const menu = element.closest('.dropdown').querySelector('.dropdown-menu');
+      menu.classList.toggle('show');
+      if (menu.classList.contains('show')) {
+        menu.style.display = 'block';
+      } else {
+        menu.style.display = 'none';
+      }
+    }
+
+    // Slider Functionality
+    const sliderWrapper = document.querySelector('.slider-wrapper');
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.querySelector('.slider-dots');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoSlideInterval;
+
+    // Create dots
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateSlider() {
+      sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateSlider();
+      resetAutoSlide();
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlider();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 2000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      resetAutoSlide();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      resetAutoSlide();
+    });
+
+    sliderWrapper.addEventListener('mouseenter', () => {
+      clearInterval(autoSlideInterval);
+    });
+
+    sliderWrapper.addEventListener('mouseleave', () => {
+      startAutoSlide();
+    });
+
+    startAutoSlide();
+
+    // Country Selector
+    const selectedCountry = document.querySelector('.selected-country');
+    const selectedCountrys = document.querySelector('.selected-countrys');
+    const arrow = document.querySelector('.arrow');
+    const selectedFlag = document.getElementById('selected-flag');
+    const selectedCode = document.getElementById('selected-code');
+    const countryOptions = document.querySelectorAll('.country-option');
+
+    selectedCountry?.addEventListener('click', (e) => {
+      console.log("jiiiii");
+
+      e.stopPropagation();
+      // Get the dropdown that's a sibling of this clicked element
+      const dropdownMenu = selectedCountry.parentElement.querySelector('.dropdown-menuss');
+      dropdownMenu.classList.toggle('show');
+      arrow.classList.toggle('up');
+    });
+    selectedCountrys?.addEventListener('click', (e) => {
+      console.log("jiiiii");
+
+      e.stopPropagation();
+      // Get the dropdown that's a sibling of this clicked element
+      const dropdownMenu = selectedCountrys.parentElement.querySelector('.dropdown-menuss');
+      dropdownMenu.classList.toggle('show');
+      arrow.classList.toggle('up');
+    });
+
+    countryOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        countryOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+
+        const code = option.getAttribute('data-code');
+        const flag = option.getAttribute('data-flag');
+
+        selectedFlag.src = flag;
+        selectedCode.textContent = code;
+
+        // Close both dropdowns
+        document.querySelectorAll('.dropdown-menuss').forEach(dropdown => {
+          dropdown.classList.remove('show');
+        });
+        document.querySelectorAll('.arrow').forEach(arr => arr.classList.remove('up'));
+      });
+    });
+    const categoryTabs = document.querySelectorAll('.category-pill');
+    categoryTabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        categoryTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Add to cart button hover effect
+    const actionButtons = document.querySelectorAll('.action-button');
+    actionButtons.forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.style.transform = 'scale(1)';
+        }, 200);
+      });
+    });
+    function scrollDeals(direction) {
+      const container = document.getElementById('dealsContainer');
+      const scrollAmount = 320;
+
+      if (direction === 'left') {
+        container.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    }
+    function offersPage(direction) {
+      const container = document.getElementById('topOffers');
+      const scrollAmount = 190;
+
+      if (direction === 'left') {
+        container.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    }
+    function featurePage(direction) {
+      const container = document.getElementById('features');
+      const scrollAmount = 190;
+
+      if (direction === 'left') {
+        container.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Countdown Timer functionality
+    function updateCountdown() {
+      const timeUnits = document.querySelectorAll('.time-unit');
+
+      setInterval(() => {
+        let hours = parseInt(timeUnits[0].textContent);
+        let minutes = parseInt(timeUnits[1].textContent);
+        let seconds = parseInt(timeUnits[2].textContent);
+
+        seconds--;
+
+        if (seconds < 0) {
+          seconds = 59;
+          minutes--;
+        }
+
+        if (minutes < 0) {
+          minutes = 59;
+          hours--;
+        }
+
+        if (hours < 0) {
+          hours = 0;
+          minutes = 0;
+          seconds = 0;
+        }
+
+        timeUnits[0].textContent = hours.toString().padStart(2, '0');
+        timeUnits[1].textContent = minutes.toString().padStart(2, '0');
+        timeUnits[2].textContent = seconds.toString().padStart(2, '0');
+      }, 1000);
+    }
+
+    // Initialize countdown
+    updateCountdown();
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        scrollDeals('left');
+      } else if (e.key === 'ArrowRight') {
+        scrollDeals('right');
+      }
+    });
+
+
+
+    const tabs = document.getElementById("categoryTabs");
+    const leftBtn = document.getElementById("scrollLeft");
+    const rightBtn = document.getElementById("scrollRight");
+
+    const scrollAmount = 200;
+
+    function updateArrows() {
+      const maxScroll = tabs.scrollWidth - tabs.clientWidth;
+
+      leftBtn.style.display = tabs.scrollLeft > 0 ? "block" : "none";
+      rightBtn.style.display =
+        tabs.scrollLeft < maxScroll ? "block" : "none";
+    }
+
+    rightBtn.addEventListener("click", () => {
+      tabs.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+
+    leftBtn.addEventListener("click", () => {
+      tabs.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+
+    tabs.addEventListener("scroll", updateArrows);
+
+    // Initial check
+    updateArrows();
+
+
+    // --- Order tracking widget behavior ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('openTrackingBtn');
+      const backdrop = document.getElementById('trackingBackdrop');
+      const closeBtn = document.getElementById('closeTracking');
+      const form = document.getElementById('trackingForm');
+      const input = document.getElementById('orderNumberInput');
+      const result = document.getElementById('trackingResult');
+
+      function openModal() {
+        backdrop.style.display = 'flex';
+        backdrop.setAttribute('aria-hidden', 'false');
+        input.focus();
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        backdrop.style.display = 'none';
+        backdrop.setAttribute('aria-hidden', 'true');
+        result.innerHTML = '';
+        form.reset();
+        document.body.style.overflow = '';
+      }
+
+      openBtn?.addEventListener('click', (e) => { e.stopPropagation(); openModal(); });
+      closeBtn?.addEventListener('click', closeModal);
+      backdrop?.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
+
+      // simple mock lookup - replace with real API call later
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const val = input.value.trim();
+        if (!val) { result.innerHTML = '<span style="color:#c0392b">Please enter an order number.</span>'; return; }
+
+        result.innerHTML = '<em>Searching...</em>';
+
+        setTimeout(() => {
+          // Mocked statuses for demo
+          const sample = {
+            'ORD12345': 'Shipped — Expected delivery in 3 days',
+            'ORD00001': 'Processing — Payment confirmed',
+            'ORD99999': 'Delivered — Signed by recipient'
+          };
+
+          const status = sample[val.toUpperCase()] || null;
+          if (status) {
+            result.innerHTML = `<div><span class="status">${status}</span></div>`;
+          } else {
+            result.innerHTML = `<div style="color:#444">No tracking found for <strong>${val}</strong>. Please check the number and try again.</div>`;
+          }
+        }, 700);
+      });
+
+      // keyboard: close on Esc
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    });
+
+
+  </script>
+</body>
+
+</html>
