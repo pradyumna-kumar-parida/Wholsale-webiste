@@ -508,7 +508,7 @@ body {
     font-weight: 900;
   }
   .account-icon {
-    font-size: 18px;
+    font-size: 21px;
   }
   .slider-nav.prev {
     left: 0 !important;
@@ -567,6 +567,12 @@ body {
   .right-ranking-product,
   .left-ranking-product {
     padding: 9px 0px !important;
+  }
+  .country-option {
+    padding: 16px 11px !important;
+  }
+  .main-header{
+    padding: 15px 13px !important;
   }
 }
 .container-x {
@@ -1527,7 +1533,7 @@ footer {
     padding-bottom: 10px; /* space for scrollbar */
     margin-bottom: 40px;
   }
-  .account-text{
+  .account-text {
     display: none !important;
   }
   .shopss-now-btn {
