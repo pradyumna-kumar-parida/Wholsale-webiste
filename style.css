@@ -646,16 +646,20 @@ body {
   transition: all 0.3s;
 }
 @media (max-width: 478px) {
+  .products-listings{
+    padding: 10px 9px !important;
+  }
   .header-actionss{
     gap: 0 !important;
   }
   .mmn-panel {
-    top: 152px !important;
+    top: 136px !important;
   }
   .recommendations-header {
     font-size: 21px !important;
     margin-bottom: 10px !important;
   }
+  .newsletter-content h2,
   .section-headers h2 {
     font-size: 24px !important;
   }
@@ -867,7 +871,7 @@ body {
 .products-section {
   /* max-width: 1400px; */
   margin: 0 auto;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   /* padding: 0 20px 0; */
 }
 
@@ -1344,7 +1348,7 @@ nav {
 .features {
   padding: 60px 20px;
   background: white;
-  margin: 40px 0;
+  margin: 20px 0;
   border-radius: 4px;
 }
 
@@ -2194,7 +2198,7 @@ footer {
   background: linear-gradient(135deg, #ffe4b5 0%, #ffd9a0 100%);
   padding: 20px;
   border-radius: 4px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   /* max-width: 1400px; */
   margin: 0 auto;
 }
@@ -2240,7 +2244,7 @@ footer {
 .flash-timer {
   display: flex;
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .flash-view-all {
