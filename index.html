@@ -5,180 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WholeSale Hub - Enhanced</title>
-  <link rel="icon" type="image/svg+xml" href="./wholesale - Copy.png" />
+  <link rel="icon" type="image/svg+xml" href="/wholesale - Copy.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="./style.css">
   <style>
-    /* Order tracking widget styles */
-    .tracking-widget-button {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
 
-      font-size: 22px;
-      cursor: pointer;
-      z-index: 9999;
-      border: 2px dashed black;
-      transition: transform .15s ease, box-shadow .15s ease;
-      animation: pulseZoom 1s infinite;
-    }
-
-    @keyframes pulseZoom {
-      0% {
-        transform: scale(1);
-      }
-
-      25% {
-        transform: scale(1.05);
-      }
-
-      50% {
-        transform: scale(1);
-      }
-
-      75% {
-        transform: scale(1.05);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .tracking-widget-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
-    }
-
-    /* Ensure any image inside the circular button scales and centers */
-    .tracking-widget-button img {
-      width: 69%;
-      height: 70%;
-      object-fit: contain;
-      display: block;
-      pointer-events: none;
-    }
-
-    .tracking-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9998;
-      padding: 24px;
-    }
-
-    .tracking-modal {
-      width: 100%;
-      max-width: 420px;
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      font-family: inherit;
-    }
-
-    .tracking-modal h3 {
-      margin: 0 0 8px 0;
-      font-size: 22px;
-      color: #222;
-    }
-
-    .tracking-modal p.small {
-      margin: 0 0 12px 0;
-      color: #666;
-      font-size: 16px
-    }
-
-    .tracking-form {
-      z-index: 1091;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .tracking-form input[type="text"] {
-      flex: 1;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #e6e6e6;
-      font-size: 14px;
-    }
-
-    .tracking-form button {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .tracking-result {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #333
-    }
-
-    .tracking-result .status {
-      font-weight: 700;
-      color: #0b8a00
-    }
-
-    .tracking-modal .close-x {
-      position: absolute;
-      right: 16px;
-      top: 12px;
-      color: #999;
-      cursor: pointer
-    }
-
-    @media (max-width:375px) {
-      .tracking-form {
-        display: grid !important;
-      }
-    }
-
-    @media (max-width:480px) {
-      .tracking-widget-button {
-        right: 14px;
-        bottom: 14px;
-        width: 56px;
-
-
-        height: 56px
-      }
-
-      .tracking-modal {
-        max-width: 92%;
-        padding: 16px
-      }
-
-      .tracking-widget-button img {
-        width: 62%;
-        height: 62%;
-      }
-    }
-
-    @media (min-width:1500px) {
-      .tracking-widget-button {
-        right: calc((100vw - 1500px) / 2 + 24px);
-      }
-    }
   </style>
 </head>
 
@@ -347,11 +180,42 @@
         </div>
 
 
-        <div class="search-container">
+        <!-- <div class="search-container">
+          <button>All</button>
           <input type="text" class="search-input" autofocus placeholder="Search products, brands, or categories...">
           <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
+        </div> -->
+        <div class="search-container">
 
+          <!-- Category dropdown -->
+          <div class="category-wrapper">
+            <select class="search-category" aria-label="Search category">
+              <option>All</option>
+              <option>Electronics</option>
+              <option>Books</option>
+              <option>Clothing</option>
+              <option>Home</option>
+              <option>Sports</option>
+              <option>Toys</option>
+              <option>Automotive</option>
+              <option>Beauty</option>
+              <option>Grocery</option>
+            </select>
+          </div>
+
+          <!-- Text input -->
+          <input class="search-input" type="text" placeholder="Search products, brands, or categories..."
+            aria-label="Search products, brands, or categories..." />
+
+          <!-- Search button -->
+          <button class="search-btn" aria-label="Search">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M21.71 20.29l-5.01-5.01A8 8 0 1 0 15.29 16.7l5.01 5.01a1 1 0 0 0 1.41-1.42zM10 16a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" />
+            </svg>
+          </button>
+
+        </div>
         <div class="header-actions">
           <div class="dropdown" id="accountDropdownDesktop">
             <button class="account-btn" onclick="toggleAccountDropdown(this)">
@@ -391,21 +255,41 @@
           </span>
         </div>
       </div>
-      <section class="all-menus">
+    </nav>
+    <section class="all-menus">
 
-        <div class="main-nav">
-          <a href="" class="nav-link active">ALL CATEGORIES</a>
-          <a href="" class="nav-link">Flash Deals</a>
-          <a href="" class="nav-link">Pet Oasis</a>
-          <a href="" class="nav-link">Just For You</a>
-          <a href="" class="nav-link">Musthave</a>
-          <a href="" class="nav-link">Ancient Beauty</a>
-          <a href="" class="nav-link">Influencers' Picks</a>
+      <div class="main-nav">
+        <a href="#" class=" nav-link mmn-all-btn" id="mmn-toggle-btn" onclick="mmnOpen()" aria-label="All categories"><i
+            class="fa-solid fa-bars"></i> ALL CATEGORIES </a>
+        <a href="" class="nav-link">Flash Deals</a>
+        <a href="" class="nav-link">Pet Oasis</a>
+        <a href="" class="nav-link">Just For You</a>
+        <a href="" class="nav-link">Musthave</a>
+        <a href="" class="nav-link">Ancient Beauty</a>
+        <a href="" class="nav-link">Influencers' Picks</a>
+      </div>
+
+      <button class="shopss-now-btn">SHOP NOW <i class="fa-solid fa-arrow-right"></i> </button>
+    </section>
+    <div class="mmn-overlay" id="mmn-overlay">
+      <!-- Backdrop -->
+      <div class="mmn-backdrop" onclick="mmnClose()"></div>
+
+      <!-- Panel -->
+      <div class="mmn-panel">
+
+        <!-- Close button -->
+        <button class="mmn-close-btn" onclick="mmnClose()"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="mmn-cat-list" id="mmn-cat-list">
         </div>
-        <button class="shopss-now-btn">SHOP NOW <i class="fa-solid fa-arrow-right"></i> </button>
-      </section>
 
-      <marquee class="sale-marquee-premium" behavior="scroll" direction="left" scrollamount="6">
+        <div id="mmn-flyouts">
+        </div>
+
+      </div>
+    </div>
+    <!-- <marquee class="sale-marquee-premium" behavior="scroll" direction="left" scrollamount="6">
         👑 Royal Discounts Up to 70% OFF • 🎁 Free Gift on Orders $99+ • 🚚 Free Express Shipping • 💳 Secure Checkout •
         ⚡
         Flash Sale Today • 💎 Premium Quality • 🏆 Member Rewards • 🔥 Hot Deals - Shop Now! and faster availability.
@@ -416,8 +300,8 @@
         needs. Whether you are a retailer, distributor, or reseller, our wholesale offers are tailored to maximize
         profitability
         while maintaining product excellence and customer satisfaction
-      </marquee>
-    </nav>
+      </marquee> -->
+
     <section class="slider-section">
       <div class="slider-container">
         <div class="slider-wrapper">
@@ -486,17 +370,407 @@
         <div class="slider-dots"></div>
       </div>
     </section>
+    <div class="section-grid-part1">
+
+      <div class="section-grid">
+
+        <!-- ── CARD 1: Continue shopping deals ── -->
+        <div class="card">
+          <div class="card-title">Continue shopping deals</div>
+          <div class="img-grid">
+            <div class="img-item">
+              <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=300&q=80"
+                alt="Blue polo shirt" />
+            </div>
+            <div class="img-item">
+              <img src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=300&q=80" alt="Grey polo shirt" />
+            </div>
+            <div class="img-item">
+              <img src="https://m.media-amazon.com/images/I/710vk255SSL._AC_SY145_.jpg" alt="Pink polo shirt" />
+            </div>
+            <div class="img-item">
+              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&q=80"
+                alt="Black polo shirt" />
+            </div>
+          </div>
+          <a href="#" class="card-link">See more deals</a>
+        </div>
+
+        <!-- ── CARD 2: Revamp your home in style ── -->
+        <div class="card">
+          <div class="card-title">Revamp your home in style</div>
+          <div class="img-grid">
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=300&q=80" alt="Cushion covers" />
+              <span class="img-label">Cushion covers, bedsheets &amp; more</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300&q=80" alt="Figurines" />
+              <span class="img-label">Figurines, vases &amp; more</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80" alt="Home storage" />
+              <span class="img-label">Home storage</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=300&q=80"
+                alt="Lighting solutions" />
+              <span class="img-label">Lighting solutions</span>
+            </div>
+          </div>
+          <a href="#" class="card-link">Explore all</a>
+        </div>
+
+        <!-- ── CARD 3: Bulk order discounts ── -->
+        <div class="card">
+          <div class="card-title">Bulk order discounts + Up to 18% GST savings</div>
+          <div class="img-grid">
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&q=80" alt="Laptops" />
+              <span class="img-label">Up to 45% off | Laptops</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=300&q=80"
+                alt="Kitchen appliances" />
+              <span class="img-label">Up to 60% off | Kitchen appliances</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1589578228447-e1a4e481c6c8?w=300&q=80"
+                alt="Office furniture" />
+              <span class="img-label">Min. 50% off | Office furniture</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=300&q=80"
+                alt="Amazon Business" />
+              <span class="img-label">Register using GST, Udyam, FSSAI or BPAN</span>
+            </div>
+          </div>
+          <a href="#" class="card-link">Create a free account</a>
+        </div>
+
+        <!-- ── CARD 4: Appliances for your home ── -->
+        <div class="card">
+          <div class="card-title">Appliances for your home | Up to 55% off</div>
+          <div class="img-grid">
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=300&q=80"
+                alt="Air conditioners" />
+              <span class="img-label">Air conditioners</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=300&q=80" alt="Refrigerators" />
+              <span class="img-label">Refrigerators</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=300&q=80" alt="Microwaves" />
+              <span class="img-label">Microwaves</span>
+            </div>
+            <div class="img-labeled">
+              <img src="https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?w=300&q=80"
+                alt="Washing machines" />
+              <span class="img-label">Washing machines</span>
+            </div>
+          </div>
+          <a href="#" class="card-link">See more</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-grid-part2">
+
+      <div class="scroll-section">
+        <div class="section-header">
+          <span class="section-title">Up to 60% Off | Smart furniture for every room</span>
+          <a href="#" class="section-link">See all offers</a>
+        </div>
+
+        <div class="scroll-wrapper">
+          <!-- Left arrow -->
+          <button class="arrow-btn left" onclick="scrollLeft('furniture-track', 'furniture-thumb')">
+            <svg viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          <!-- Scrollable images -->
+          <div class="scroll-track" id="furniture-track" onscroll="updateThumb('furniture-track','furniture-thumb')">
+            <div class="scroll-item">
+              <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&q=80" alt="Chair 1" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwNFIhZc0BBp16ASNixXTZfNvzfqvE25RrsA&s"
+                alt="Office Chair" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=400&q=80" alt="Desk setup" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80" alt="Sofa" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?w=400&q=80" alt="Study desk" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80" alt="Modern room" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80" alt="Orange chair" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?w=400&q=80" alt="White desk" />
+            </div>
+          </div>
+
+          <!-- Right arrow -->
+          <button class="arrow-btn right" onclick="scrollRight('furniture-track','furniture-thumb')">
+            <svg viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Custom scrollbar -->
+        <div class="scrollbar-wrap">
+          <div class="scrollbar-track">
+            <div class="scrollbar-thumb" id="furniture-thumb"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-grid-part3">
+      <!-- ════ SECTION 2: Cookware ════ -->
+      <div class="scroll-section">
+        <div class="section-header">
+          <span class="section-title">Up to 60% off | Cookware, kitchen tool &amp; more | Amazon Launchpad</span>
+          <a href="#" class="section-link">See all</a>
+        </div>
+
+        <div class="scroll-wrapper">
+          <!-- Left arrow -->
+          <button class="arrow-btn left" onclick="scrollLeft('cookware-track','cookware-thumb')">
+            <svg viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          <!-- Scrollable images -->
+          <div class="scroll-track" id="cookware-track" onscroll="updateThumb('cookware-track','cookware-thumb')">
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/51WLLO95EmL._AC_SY200_.jpg" alt="Kadai" />
+            </div>
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/619sSmzbUjL._AC_SY200_.jpg" alt="Knife set" />
+            </div>
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/513QTB9p4hL._AC_SY200_.jpg" alt="Mug" />
+            </div>
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/61-l-DKrlsL._AC_SY200_.jpg" alt="Lunch box" />
+            </div>
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/513bEiC74lL._AC_SY200_.jpg" alt="Pan" />
+            </div>
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/41ggFXk-slL._AC_SY200_.jpg" alt="Thermos" />
+            </div>
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/512wpyNp2qL._AC_SY200_.jpg" alt="Cookware set" />
+            </div>
+            <div class="scroll-item tall-item">
+              <img src="https://m.media-amazon.com/images/I/81A+DM0nS-L._AC_SY200_.jpg" alt="Bowl" />
+            </div>
+          </div>
+
+          <!-- Right arrow -->
+          <button class="arrow-btn right" onclick="scrollRight('cookware-track','cookware-thumb')">
+            <svg viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Custom scrollbar -->
+        <div class="scrollbar-wrap">
+          <div class="scrollbar-track">
+            <div class="scrollbar-thumb" id="cookware-thumb"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="section-grid-part4">
+
+      <div class="bsc-clothing-section">
+
+        <div class="bsc-clothing-header">
+          <span class="section-title ">Best Sellers in Clothing &amp; Accessories</span>
+        </div>
+
+        <div class="bsc-clothing-scroll-wrapper">
+
+          <!-- Left arrow -->
+          <button class="bsc-clothing-arrow bsc-clothing-arrow--left"
+            onclick="bscScrollLeft('bsc-clothing-track','bsc-clothing-thumb')" aria-label="Scroll left">
+            <svg viewBox="0 0 24 24">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+
+          <!-- Image track -->
+          <div class="bsc-clothing-track" id="bsc-clothing-track"
+            onscroll="bscUpdateThumb('bsc-clothing-track','bsc-clothing-thumb')">
+
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/71I53evweVL._AC_SY200_.jpg" alt="Blue Kurti" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/81biKixsaDL._AC_SY200_.jpg" alt="Socks" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/71DCFWHFolL._AC_SY200_.jpg" alt="Green Anarkali" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/71eUwDk8z+L._AC_SY200_.jpg" alt="Black Polo" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/713n+TxyfCL._AC_SY200_.jpg" alt="Teal Polo" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/81MfjxIbRsL._AC_SY200_.jpg" alt="White Vest" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/716gXBFZjjL._AC_SY200_.jpg" alt="Olive Kurti" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/51T42aZXalL._AC_SY200_.jpg" alt="Rust Kurta" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/61dFcpPdJkL._AC_SY200_.jpg" alt="Maroon Kurta" />
+            </div>
+            <div class="bsc-clothing-item">
+              <img src="https://m.media-amazon.com/images/I/71mX4WATh-L._AC_SY200_.jpg" alt="Ethnic Dress" />
+            </div>
+
+          </div>
+
+          <!-- Right arrow -->
+          <button class="bsc-clothing-arrow bsc-clothing-arrow--right"
+            onclick="bscScrollRight('bsc-clothing-track','bsc-clothing-thumb')" aria-label="Scroll right">
+            <svg viewBox="0 0 24 24">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Scrollbar indicator -->
+        <div class="bsc-clothing-scrollbar-wrap">
+          <div class="bsc-clothing-scrollbar-track">
+            <div class="bsc-clothing-scrollbar-thumb" id="bsc-clothing-thumb"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- ════ TOP: Best Sellers in Clothing & Accessories ════ -->
+    <div class="section-grid-part5">
+
+      <div class="bsc-minicards-row">
+
+        <!-- Card 1: Women-led brands -->
+        <div class="bsc-minicard bsc-minicard--women">
+          <div class="bsc-minicard-title">Up to 60% off | Bestsellers from women-led brands</div>
+          <div class="bsc-minicard-imgrid">
+            <div class="bsc-minicard-img-cell bsc-women-img1">
+              <img src="https://m.media-amazon.com/images/I/71QED8-OFhL._AC_SY170_.jpg" alt="Organiser" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-women-img2">
+              <img src="https://m.media-amazon.com/images/I/31Wd-Zi+IUL._AC_SY170_.jpg" alt="Bathroom shelf" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-women-img3">
+              <img src="https://m.media-amazon.com/images/I/81-qrPlQOCL._AC_SY170_.jpg" alt="Desk mat" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-women-img4">
+              <img src="https://m.media-amazon.com/images/I/51m+q6k1lSL._AC_SY170_.jpg" alt="Wall hook" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Trending from Emerging Businesses -->
+        <div class="bsc-minicard bsc-minicard--trending">
+          <div class="bsc-minicard-title">Up to 60% off | Trending products from Emerging Busi...</div>
+          <div class="bsc-minicard-imgrid">
+            <div class="bsc-minicard-img-cell bsc-trending-img1">
+              <img src="https://m.media-amazon.com/images/I/61JeMF3xF-L._AC_SY170_.jpg" alt="Scalp brush" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-trending-img2">
+              <img src="https://m.media-amazon.com/images/I/81C1kDwAwOL._AC_SY170_.jpg" alt="Sticker pack" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-trending-img3">
+              <img src="https://m.media-amazon.com/images/I/61MDuZOh5RL._AC_SY170_.jpg" alt="Shoe horn" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-trending-img4">
+              <img src="https://m.media-amazon.com/images/I/41oeywYJaaL._AC_SY170_.jpg" alt="Crystal stones" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Kitchen products -->
+        <div class="bsc-minicard bsc-minicard--kitchen">
+          <div class="bsc-minicard-title">Up to 60% off | Best offers on kitchen products from emerg...</div>
+          <div class="bsc-minicard-imgrid">
+            <div class="bsc-minicard-img-cell bsc-kitchen-img1">
+              <img src="https://m.media-amazon.com/images/I/61RfPOJ+8sL._AC_SY170_.jpg" alt="Facial trimmer" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-kitchen-img2">
+              <img src="https://m.media-amazon.com/images/I/41Nmd4Ym+8L._AC_SY170_.jpg" alt="Lunch box" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-kitchen-img3">
+              <img src="https://m.media-amazon.com/images/I/61wsoayoO2L._AC_SY170_.jpg" alt="Thermos" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-kitchen-img4">
+              <img src="https://m.media-amazon.com/images/I/61cNyQqbsmL._AC_SY170_.jpg" alt="Steel tiffin" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Home & Kitchen Best Sellers -->
+        <div class="bsc-minicard bsc-minicard--home">
+          <div class="bsc-minicard-title">Best Sellers in Home &amp; Kitchen</div>
+          <div class="bsc-minicard-imgrid">
+            <div class="bsc-minicard-img-cell bsc-home-img1">
+              <img src="https://m.media-amazon.com/images/I/61fn1xtHO4L._AC_SY170_.jpg" alt="Tissue rolls" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-home-img2">
+              <img src="https://m.media-amazon.com/images/I/71775fRr+gL._AC_SY170_.jpg" alt="Kitchen scale" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-home-img3">
+              <img src="https://m.media-amazon.com/images/I/71qEqnkZg8L._AC_SY170_.jpg" alt="Vacuum bags" />
+            </div>
+            <div class="bsc-minicard-img-cell bsc-home-img4">
+              <img src="https://m.media-amazon.com/images/I/81bmCoO7IsL._AC_SY170_.jpg" alt="Bag organiser" />
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end .bsc-minicards-row -->
+    </div>
+
 
     <section class="products-section">
       <!-- ENHANCED Filter Bar with Dropdowns -->
-      <div class="filter-bar">
+      <!-- <div class="filter-bar">
         <div class="filter-tabs">
-          <!-- All Products Tab -->
+
           <button class="filter-tab active" data-category="all" onclick="filterByMainCategory('all', this)">
             All Products
           </button>
 
-          <!-- Electronics with Dropdown -->
+
           <div class="filter-tab-container">
             <button class="filter-tab" data-category="electronics" onclick="filterByMainCategory('electronics', this)">
               Electronics
@@ -542,7 +816,7 @@
             </div>
           </div>
 
-          <!-- Fashion with Dropdown -->
+       
           <div class="filter-tab-container">
             <button class="filter-tab" data-category="fashion" onclick="filterByMainCategory('fashion', this)">
               Fashion
@@ -584,7 +858,7 @@
             </div>
           </div>
 
-          <!-- Home & Garden with Dropdown -->
+
           <div class="filter-tab-container">
             <button class="filter-tab" data-category="home" onclick="filterByMainCategory('home', this)">
               Home & Garden
@@ -623,7 +897,7 @@
             </div>
           </div>
 
-          <!-- Sports with Dropdown -->
+      
           <div class="filter-tab-container">
             <button class="filter-tab" data-category="sports" onclick="filterByMainCategory('sports', this)">
               Sports
@@ -663,7 +937,7 @@
             </div>
           </div>
 
-          <!-- Beauty with Dropdown -->
+
           <div class="filter-tab-container">
             <button class="filter-tab" data-category="beauty" onclick="filterByMainCategory('beauty', this)">
               Beauty
@@ -704,7 +978,7 @@
         </div>
         <div class="filter-sections ">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-            <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+         
             <path
               d="M20 2H4c-.55 0-1 .45-1 1v2c0 .22.07.43.2.6L9 13.33V21a1 1 0 0 0 1 1c.15 0 .31-.04.45-.11l4-2A1 1 0 0 0 15 19v-5.67l5.8-7.73c.13-.17.2-.38.2-.6V3c0-.55-.45-1-1-1m-1 2.67-5.8 7.73c-.13.17-.2.38-.2.6v5.38l-2 1V13c0-.22-.07-.43-.2-.6L5 4.67V4h14z">
             </path>
@@ -718,13 +992,20 @@
           <option>Newest First</option>
           <option>Best Selling</option>
         </select>
-      </div>
+      </div> -->
 
-      <!-- Active Filters Display -->
+
       <div class="active-filters" id="activeFilters"></div>
 
-      <!-- Products Grid -->
-      <div class="products-grid" id="productsGrid"></div>
+
+      <div class="products-listings">
+        <div class="section-headerss">
+          <h2>Discover Trending Products Across Categories</h2>
+        </div>
+        <div class="products-grid" id="productsGrid">
+        </div>
+
+      </div>
 
       <div class="loading">
         <div class="spinner"></div>
@@ -2260,7 +2541,7 @@
     </section>
 
     <section class="features">
-      <div class="section-header">
+      <div class="section-headers">
         <h2>Why Choose Us</h2>
         <p>Everything you need for successful wholesale distribution</p>
       </div>
@@ -2312,7 +2593,7 @@
       </div>
     </section>
     <section class="testimonials">
-      <div class="section-header">
+      <div class="section-headers">
         <h2>What Our Clients Say</h2>
         <p>Trusted by thousands of businesses worldwide</p>
       </div>
@@ -2638,35 +2919,22 @@
         }
       }
 
+
       grid.innerHTML = filtered.map(product => `
+
         <div class="product-card">
-          <div class="product-image-container">
+            <div class="product-image-containers">
             <img src="${product.image}" alt="${product.title}" loading="lazy">
-            ${product.badge ? `<span class="product-badge ${product.badge}">${product.badge}</span>` : ''}
-            <div class="product-wishlist"><i class="fa-regular fa-heart"></i></div>
            
-          </div>
-          <div class="product-info">
             
+          </div>
+
+          <div class="product-info">
             <div class="product-category">${product.category}</div>
             <div class="product-title">${product.title}</div>
-            <div class="product-rating">
-              <span class="star">${'<i class="fa-solid fa-star"></i>'.repeat(Math.floor(product.rating))}</span>
-              <span class="rating-count">(${product.reviews})</span>
-            </div>
-            <div class="product-pricing">
-                <div class="value">
- <div class="product-price">${product.price}</div>
-              <div class="product-less">$255</div>
-              <div class="product-discount">70%</div>
-                  </div>
-             
-              <div class="product-moq">${product.moq}</div>
-            </div>
-            <div class="product-actions">
-              <button class="btn-add-cart">Add to Cart</button>
-              <button class="btn-quick-view">👁️</button>
-            </div>
+           
+          
+           
           </div>
         </div>
       `).join('');
@@ -2906,6 +3174,7 @@
     const countryOptions = document.querySelectorAll('.country-option');
 
     selectedCountry?.addEventListener('click', (e) => {
+      e.preventDefault();   // 🔥 stops page reload
       console.log("jiiiii");
 
       e.stopPropagation();
@@ -2915,6 +3184,7 @@
       arrow.classList.toggle('up');
     });
     selectedCountrys?.addEventListener('click', (e) => {
+      e.preventDefault();   // 🔥 stops page reload
       console.log("jiiiii");
 
       e.stopPropagation();
@@ -2926,6 +3196,9 @@
 
     countryOptions.forEach(option => {
       option.addEventListener('click', (e) => {
+        e.preventDefault();   // 🔥 ADD THIS (stops reload)
+        e.stopPropagation();  // 🔥 also good practice
+
         countryOptions.forEach(opt => opt.classList.remove('selected'));
         option.classList.add('selected');
 
@@ -2935,13 +3208,16 @@
         selectedFlag.src = flag;
         selectedCode.textContent = code;
 
-        // Close both dropdowns
+        // Close dropdown
         document.querySelectorAll('.dropdown-menuss').forEach(dropdown => {
           dropdown.classList.remove('show');
         });
         document.querySelectorAll('.arrow').forEach(arr => arr.classList.remove('up'));
       });
     });
+
+
+
     const categoryTabs = document.querySelectorAll('.category-pill');
     categoryTabs.forEach(tab => {
       tab.addEventListener('click', function () {
@@ -3142,7 +3418,351 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
     });
 
+    const BSC_SCROLL_AMT = 400;
 
+    function bscScrollLeft(trackId, thumbId) {
+      document.getElementById(trackId).scrollBy({ left: -BSC_SCROLL_AMT, behavior: 'smooth' });
+      setTimeout(() => bscUpdateThumb(trackId, thumbId), 320);
+    }
+
+    function bscScrollRight(trackId, thumbId) {
+      document.getElementById(trackId).scrollBy({ left: BSC_SCROLL_AMT, behavior: 'smooth' });
+      setTimeout(() => bscUpdateThumb(trackId, thumbId), 320);
+    }
+
+    function bscUpdateThumb(trackId, thumbId) {
+      const track = document.getElementById(trackId);
+      const thumb = document.getElementById(thumbId);
+      const scrollable = track.scrollWidth - track.clientWidth;
+      const ratio = scrollable > 0 ? track.scrollLeft / scrollable : 0;
+      const thumbPct = Math.max(8, (track.clientWidth / track.scrollWidth) * 100);
+      thumb.style.width = thumbPct + '%';
+      thumb.style.left = (ratio * (100 - thumbPct)) + '%';
+    }
+
+    window.addEventListener('load', () => bscUpdateThumb('bsc-clothing-track', 'bsc-clothing-thumb'));
+    window.addEventListener('resize', () => bscUpdateThumb('bsc-clothing-track', 'bsc-clothing-thumb'));
+
+
+    const MMN_CATEGORIES = [
+      {
+        id: 'pet',
+        label: 'Pet Supplies',
+        groups: [
+          { title: 'Dogs', links: ['Dog Food', 'Dog Treats', 'Dog Beds', 'Dog Toys', 'Collars & Leashes', 'Grooming'] },
+          { title: 'Cats', links: ['Cat Food', 'Cat Litter', 'Cat Trees', 'Cat Toys', 'Cat Carriers', 'Flea Treatment'] },
+          { title: 'Birds & Fish', links: ['Bird Food', 'Bird Cages', 'Aquarium Tanks', 'Fish Food', 'Filters', 'Reptile Supplies'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300&q=80', label: 'Dog Essentials' },
+          { src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300&q=80', label: 'Cat Supplies' },
+          { src: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=300&q=80', label: 'Dog Beds' },
+          { src: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=300&q=80', label: 'Bird & Fish' },
+        ]
+      },
+      {
+        id: 'shoes',
+        label: 'Shoes & Accessories',
+        groups: [
+          { title: "Men's Shoes", links: ["Men's Casual Shoes", "Men's Sports Shoes", "Men's Dress Shoes", "Men's Slippers", "Men's Boots", "Men's Sandals"] },
+          { title: "Women's Shoes", links: ["Women's Dress Shoes", "Women's Sandals", "Women's Slippers", "Women's Boots", "Women's Casual Shoes", "Women's Sports Shoes"] },
+          { title: 'Sports Shoes', links: ['Running Shoes', 'Basketball Shoes', 'Soccer Shoes', 'American Football Shoes', 'Dance Shoes', 'Hiking Shoes'] },
+          { title: 'Special Purpose Shoes', links: ['Rain Boots', 'Safety Shoes', 'Fitness Shoes', 'Height Increasing Shoes', 'Disposable Slippers', 'Water Shoes', 'Platform Shoes'] },
+          { title: 'Casual Shoes', links: ['Canvas Shoes', 'Boots', 'Sandals', 'Slippers', 'Dress Shoes', 'Wedding Shoes'] },
+          { title: 'Shoe Parts & Accessories', links: ['Insoles', 'Laces', 'Shoe Bags', 'Shoe Racks', 'Polish & Care'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?w=300&q=80', label: 'High Heels' },
+          { src: 'https://images.unsplash.com/photo-1478146059778-26028b07395a?w=300&q=80', label: 'Platform Oxfords' },
+          { src: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80', label: 'Suede Shoes' },
+          { src: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=300&q=80', label: 'Sandals' },
+          { src: 'https://images.unsplash.com/photo-1465453869711-7e174808ace9?w=300&q=80', label: 'Mens Shoes' },
+          { src: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=300&q=80', label: 'Mens Shoes' },
+        ]
+      },
+      {
+        id: 'apparel',
+        label: 'Apparel',
+        groups: [
+          { title: "Men's Clothing", links: ['T-Shirts', 'Shirts', 'Trousers', 'Jeans', 'Ethnic Wear', 'Jackets & Coats', 'Suits & Blazers'] },
+          { title: "Women's Clothing", links: ['Kurtas & Suits', 'Sarees', 'Jeans', 'Dresses', 'Tops & Tees', 'Leggings', 'Winter Wear'] },
+          { title: "Kids' Clothing", links: ['Boys Clothing', 'Girls Clothing', 'Baby Clothing', 'School Uniforms', 'Ethnic Wear Kids'] },
+          { title: 'Sportswear', links: ['Track Pants', 'Gym Wear', 'Yoga Pants', 'Sports Bra', 'Compression Wear'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80', label: "Men's Wear" },
+          { src: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=300&q=80', label: "Women's Wear" },
+          { src: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80', label: 'Ethnic Wear' },
+          { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&q=80', label: 'Sportswear' },
+        ]
+      },
+      {
+        id: 'bags',
+        label: 'Bags | Fashion Accessories',
+        groups: [
+          { title: 'Bags', links: ['Backpacks', 'Handbags', 'Tote Bags', 'Clutches', 'Laptop Bags', 'Travel Bags', 'Gym Bags'] },
+          { title: 'Wallets', links: ["Men's Wallets", "Women's Wallets", 'Card Holders', 'Money Clips'] },
+          { title: 'Fashion Accessories', links: ['Sunglasses', 'Belts', 'Scarves & Wraps', 'Hats & Caps', 'Gloves', 'Hair Accessories'] },
+          { title: 'Jewellery', links: ['Necklaces', 'Rings', 'Earrings', 'Bracelets', 'Anklets', 'Brooches'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&q=80', label: 'Handbags' },
+          { src: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&q=80', label: 'Backpacks' },
+          { src: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&q=80', label: 'Sunglasses' },
+          { src: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&q=80', label: 'Accessories' },
+        ]
+      },
+      {
+        id: 'homegarden',
+        label: 'Home&Garden | Lighting',
+        groups: [
+          { title: 'Furniture', links: ['Sofas', 'Beds', 'Wardrobes', 'Dining Tables', 'Chairs', 'Desks', 'Bookshelves'] },
+          { title: 'Kitchen & Dining', links: ['Cookware', 'Bakeware', 'Kitchen Tools', 'Tableware', 'Storage'] },
+          { title: 'Garden & Outdoor', links: ['Plant Pots', 'Garden Tools', 'Seeds & Plants', 'Outdoor Furniture', 'Watering'] },
+          { title: 'Lighting', links: ['Ceiling Lights', 'Wall Lights', 'Table Lamps', 'Floor Lamps', 'LED Strips', 'Night Lights'] },
+          { title: 'Home Decor', links: ['Cushions & Covers', 'Curtains', 'Rugs & Carpets', 'Wall Art', 'Clocks'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80', label: 'Furniture' },
+          { src: 'https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=300&q=80', label: 'Lighting' },
+          { src: 'https://images.unsplash.com/photo-1585585089888-3fc4a6c97a5f?w=300&q=80', label: 'Kitchen' },
+          { src: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&q=80', label: 'Garden' },
+        ]
+      },
+      {
+        id: 'phones',
+        label: 'Cell Phones | Video Surveillance',
+        groups: [
+          { title: 'Smartphones', links: ['Android Phones', 'iPhones', 'Budget Phones', '5G Phones', 'Refurbished Phones'] },
+          { title: 'Accessories', links: ['Phone Cases', 'Screen Protectors', 'Chargers', 'Power Banks', 'Earphones', 'Cables'] },
+          { title: 'Tablets', links: ['Android Tablets', 'iPads', 'Kids Tablets', 'Drawing Tablets', 'E-Readers'] },
+          { title: 'Surveillance', links: ['CCTV Cameras', 'IP Cameras', 'Dash Cams', 'Baby Monitors', 'Doorbells', 'NVR/DVR'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&q=80', label: 'Smartphones' },
+          { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80', label: 'Accessories' },
+          { src: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=300&q=80', label: 'Tablets' },
+          { src: 'https://images.unsplash.com/photo-1558002038-1055907df827?w=300&q=80', label: 'Surveillance' },
+        ]
+      },
+      {
+        id: 'electronics',
+        label: 'Electronics | Industrial',
+        groups: [
+          { title: 'TVs & Audio', links: ['Smart TVs', 'Soundbars', 'Headphones', 'Speakers', 'Projectors'] },
+          { title: 'Computers', links: ['Laptops', 'Desktops', 'Monitors', 'Keyboards', 'Mice', 'Hard Drives', 'SSDs'] },
+          { title: 'Cameras', links: ['DSLR Cameras', 'Mirrorless Cameras', 'Action Cameras', 'Lenses', 'Tripods'] },
+          { title: 'Industrial', links: ['Power Tools', 'Hand Tools', 'Electrical Supplies', 'Safety Equipment', 'Measuring Tools'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=300&q=80', label: 'Smart TVs' },
+          { src: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&q=80', label: 'Laptops' },
+          { src: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&q=80', label: 'Cameras' },
+          { src: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=300&q=80', label: 'Tools' },
+        ]
+      },
+      {
+        id: 'sports',
+        label: 'Sports & Outdoors',
+        groups: [
+          { title: 'Exercise & Fitness', links: ['Treadmills', 'Yoga Mats', 'Dumbbells', 'Resistance Bands', 'Gym Benches', 'Cycles'] },
+          { title: 'Team Sports', links: ['Cricket', 'Football', 'Basketball', 'Badminton', 'Tennis', 'Hockey'] },
+          { title: 'Outdoor Activities', links: ['Camping Gear', 'Trekking', 'Cycling', 'Swimming', 'Fishing', 'Archery'] },
+          { title: 'Sports Nutrition', links: ['Protein Powder', 'Pre-Workout', 'Energy Bars', 'Vitamins', 'Hydration'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=300&q=80', label: 'Fitness' },
+          { src: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=300&q=80', label: 'Football' },
+          { src: 'https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=300&q=80', label: 'Camping' },
+          { src: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=300&q=80', label: 'Cycling' },
+        ]
+      },
+      {
+        id: 'health',
+        label: 'Health & Beauty',
+        groups: [
+          { title: 'Skincare', links: ['Face Wash', 'Moisturisers', 'Sunscreen', 'Serums', 'Face Masks', 'Toners'] },
+          { title: 'Hair Care', links: ['Shampoo', 'Conditioner', 'Hair Oil', 'Hair Colour', 'Styling Products', 'Hair Tools'] },
+          { title: 'Health Devices', links: ['BP Monitors', 'Thermometers', 'Oximeters', 'Glucometers', 'Weighing Scales'] },
+          { title: 'Vitamins & Supplements', links: ['Multivitamins', 'Omega-3', 'Calcium', 'Iron', 'Probiotics'] },
+          { title: 'Personal Care', links: ['Deodorants', 'Razors', 'Trimmers', 'Oral Care', 'Feminine Hygiene'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=300&q=80', label: 'Skincare' },
+          { src: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=300&q=80', label: 'Hair Care' },
+          { src: 'https://images.unsplash.com/photo-1607006483224-a38c4f5ad027?w=300&q=80', label: 'Devices' },
+          { src: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&q=80', label: 'Supplements' },
+        ]
+      },
+      {
+        id: 'toys',
+        label: 'Toys&Gifts | Baby&Kids',
+        groups: [
+          { title: 'Baby', links: ['Baby Clothing', 'Diapers', 'Baby Food', 'Baby Monitors', 'Strollers', 'Baby Carriers'] },
+          { title: 'Toys by Age', links: ['0-2 Years', '3-5 Years', '6-8 Years', '9-11 Years', '12+ Years'] },
+          { title: 'Toy Types', links: ['Building Blocks', 'Board Games', 'Puzzles', 'Remote Control', 'Dolls', 'Educational Toys', 'Arts & Crafts'] },
+          { title: 'Gifts', links: ['Gift Cards', 'Gift Wrap', 'Personalised Gifts', 'Hampers', 'Occasion Gifts'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=300&q=80', label: 'Toys' },
+          { src: 'https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=300&q=80', label: 'Baby' },
+          { src: 'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=300&q=80', label: 'Board Games' },
+          { src: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=300&q=80', label: 'Gifts' },
+        ]
+      },
+      {
+        id: 'jewelry',
+        label: 'Jewelry & Watches',
+        groups: [
+          { title: 'Jewellery', links: ['Gold Jewellery', 'Silver Jewellery', 'Diamond Jewellery', 'Costume Jewellery', 'Temple Jewellery'] },
+          { title: 'Watches', links: ["Men's Watches", "Women's Watches", 'Smart Watches', 'Kids Watches', 'Pocket Watches'] },
+          { title: 'By Occasion', links: ['Bridal Jewellery', 'Office Wear', 'Casual Wear', 'Festive Wear'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=300&q=80', label: 'Gold Jewellery' },
+          { src: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&q=80', label: 'Watches' },
+          { src: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&q=80', label: 'Bracelets' },
+          { src: 'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=300&q=80', label: 'Rings' },
+        ]
+      },
+      {
+        id: 'weddings',
+        label: 'Weddings & Formal Events',
+        groups: [
+          { title: 'Bridal', links: ['Bridal Lehengas', 'Wedding Sarees', 'Bridal Jewellery', 'Bridal Footwear', 'Bridal Accessories'] },
+          { title: "Men's Formalwear", links: ['Sherwanis', 'Suits', 'Tuxedos', 'Formal Shirts', 'Formal Trousers', 'Bow Ties'] },
+          { title: 'Event Decor', links: ['Flowers & Garlands', 'Table Decor', 'Lighting', 'Invitations', 'Return Gifts'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=300&q=80', label: 'Bridal Wear' },
+          { src: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=300&q=80', label: 'Ethnic Wear' },
+          { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=300&q=80', label: 'Decor' },
+          { src: 'https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=300&q=80', label: 'Accessories' },
+        ]
+      },
+      {
+        id: 'hair',
+        label: 'Hair & Styling',
+        groups: [
+          { title: 'Hair Tools', links: ['Hair Dryers', 'Straighteners', 'Curling Irons', 'Hair Clippers', 'Scalp Massagers'] },
+          { title: 'Hair Care', links: ['Shampoo', 'Conditioner', 'Hair Oil', 'Hair Masks', 'Anti-Dandruff', 'Serums'] },
+          { title: 'Styling Products', links: ['Hair Gel', 'Hair Spray', 'Mousse', 'Wax', 'Leave-In Conditioner'] },
+          { title: 'Hair Accessories', links: ['Hair Clips', 'Headbands', 'Scrunchies', 'Combs', 'Brushes'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&q=80', label: 'Hair Tools' },
+          { src: 'https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=300&q=80', label: 'Hair Care' },
+          { src: 'https://images.unsplash.com/photo-1607006483224-a38c4f5ad027?w=300&q=80', label: 'Styling' },
+          { src: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=300&q=80', label: 'Accessories' },
+        ]
+      },
+      {
+        id: 'computers',
+        label: 'Computers | Games',
+        groups: [
+          { title: 'Computers', links: ['Laptops', 'Desktops', 'All-in-One PCs', 'Mini PCs', 'Workstations', 'Servers'] },
+          { title: 'Components', links: ['Processors', 'RAM', 'Motherboards', 'Graphics Cards', 'Power Supplies', 'Cooling'] },
+          { title: 'Peripherals', links: ['Keyboards', 'Mice', 'Monitors', 'Webcams', 'Headsets', 'Printers', 'Scanners'] },
+          { title: 'Gaming', links: ['Gaming Laptops', 'Gaming PCs', 'Gaming Chairs', 'Controllers', 'Gaming Headsets', 'Gaming Mice', 'Games & DLC'] },
+          { title: 'Storage', links: ['External Hard Drives', 'SSDs', 'Pen Drives', 'Memory Cards', 'NAS Devices'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1593640408182-31c228cf14d6?w=300&q=80', label: 'Gaming' },
+          { src: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&q=80', label: 'Laptops' },
+          { src: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=300&q=80', label: 'Components' },
+          { src: 'https://images.unsplash.com/photo-1527443224154-c4a573d81204?w=300&q=80', label: 'Peripherals' },
+        ]
+      },
+      {
+        id: 'auto',
+        label: 'Automobile & Motorcycle',
+        groups: [
+          { title: 'Car Accessories', links: ['Car Covers', 'Seat Covers', 'Dashcams', 'Car Fresheners', 'Car Mounts', 'Cleaning Kits'] },
+          { title: 'Bike Accessories', links: ['Helmets', 'Gloves', 'Bike Covers', 'Chain Oils', 'Saddlebags', 'Phone Mounts'] },
+          { title: 'Tyres & Wheels', links: ['Car Tyres', 'Bike Tyres', 'Alloy Wheels', 'Tyre Inflators'] },
+          { title: 'Tools & Equipment', links: ['Jump Starters', 'Tyre Pressure Gauges', 'Car Jacks', 'Polishing Kits'] },
+        ],
+        images: [
+          { src: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=300&q=80', label: 'Car' },
+          { src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80', label: 'Motorcycle' },
+          { src: 'https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=300&q=80', label: 'Helmets' },
+          { src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&q=80', label: 'Tools' },
+        ]
+      },
+    ];
+
+    /* ══════════════════════════════════════
+       BUILD DOM
+    ══════════════════════════════════════ */
+    const catList = document.getElementById('mmn-cat-list');
+    const flyoutsEl = document.getElementById('mmn-flyouts');
+
+    MMN_CATEGORIES.forEach((cat, idx) => {
+      /* ── Category list item ── */
+      const item = document.createElement('div');
+      item.className = 'mmn-cat-item' + (idx === 0 ? ' mmn-active' : '');
+      item.dataset.id = cat.id;
+      item.innerHTML = `${cat.label}<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>`;
+      item.addEventListener('mouseenter', () => mmnActivate(cat.id));
+      item.addEventListener('click', () => mmnActivate(cat.id));
+      catList.appendChild(item);
+
+      /* ── Flyout panel ── */
+      const flyout = document.createElement('div');
+      flyout.className = 'mmn-flyout' + (idx === 0 ? ' mmn-flyout-active' : '');
+      flyout.id = 'mmn-flyout-' + cat.id;
+
+      /* Sub-cols */
+      let groupsHTML = '';
+      cat.groups.forEach(g => {
+        groupsHTML += `<div class="mmn-sub-group">
+          <div class="mmn-sub-group-title">${g.title}</div>
+          ${g.links.map(l => `<a class="mmn-sub-link" href="#">${l}</a>`).join('')}
+        </div>`;
+      });
+
+      /* Image grid */
+      let imgsHTML = '';
+      cat.images.forEach(img => {
+        imgsHTML += `<div class="mmn-img-card">
+          <img src="${img.src}" alt="${img.label}" loading="lazy"/>
+          <div class="mmn-img-card-label">${img.label}</div>
+        </div>`;
+      });
+
+      flyout.innerHTML = `
+        <div class="mmn-flyout-inner">
+          <div class="mmn-sub-cols">${groupsHTML}</div>
+          <div class="mmn-img-grid">${imgsHTML}</div>
+        </div>`;
+
+      flyoutsEl.appendChild(flyout);
+    });
+
+    /* ══════════════════════════════════════
+       LOGIC
+    ══════════════════════════════════════ */
+    function mmnActivate(id) {
+      document.querySelectorAll('.mmn-cat-item').forEach(el => {
+        el.classList.toggle('mmn-active', el.dataset.id === id);
+      });
+      document.querySelectorAll('.mmn-flyout').forEach(el => {
+        el.classList.toggle('mmn-flyout-active', el.id === 'mmn-flyout-' + id);
+      });
+    }
+
+    function mmnOpen() {
+      document.getElementById('mmn-overlay').classList.add('mmn-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function mmnClose() {
+      document.getElementById('mmn-overlay').classList.remove('mmn-open');
+      document.body.style.overflow = '';
+    }
+
+    /* Close on Escape */
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') mmnClose(); });
   </script>
 </body>
 
