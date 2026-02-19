@@ -645,15 +645,20 @@ body {
   border-bottom: 3px solid transparent;
   transition: all 0.3s;
 }
+@media (max-width: 1300px) {
+  .mmn-panel {
+    top: 165px !important;
+  }
+}
 @media (max-width: 478px) {
-  .products-listings{
+  .products-listings {
     padding: 10px 9px !important;
   }
-  .header-actionss{
+  .header-actionss {
     gap: 0 !important;
   }
   .mmn-panel {
-    top: 136px !important;
+    top: 134px !important;
   }
   .recommendations-header {
     font-size: 21px !important;
@@ -2209,7 +2214,7 @@ footer {
   overflow-x: auto;
   padding: 10px 0;
 }
-.mmn-cat-list::-webkit-scrollbar,
+
 .mmn-flyout::-webkit-scrollbar,
 .main-nav::-webkit-scrollbar,
 .products-grid::-webkit-scrollbar {
@@ -3934,9 +3939,11 @@ a {
 /* ══════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════ */
+
 @media (max-width: 860px) {
   .mmn-panel {
     max-width: 100%;
+    top: 135px !important;
   }
 
   .mmn-sub-cols {
