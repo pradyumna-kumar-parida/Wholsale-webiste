@@ -487,14 +487,14 @@
 
         <div class="scroll-wrapper">
           <!-- Left arrow -->
-          <button class="arrow-btn left" onclick="scrollLeft('furniture-track', 'furniture-thumb')">
+          <button class="arrow-btn left" onclick="bscScrollLeft2('furniture-track', 'furniture-thumb')">
             <svg viewBox="0 0 24 24">
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
 
           <!-- Scrollable images -->
-          <div class="scroll-track" id="furniture-track" onscroll="updateThumb('furniture-track','furniture-thumb')">
+          <div class="scroll-track" id="furniture-track" onscroll="bscUpdateThumb2('furniture-track','furniture-thumb')">
             <div class="scroll-item">
               <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=400&q=80" alt="Chair 1" />
             </div>
@@ -504,6 +504,18 @@
             </div>
             <div class="scroll-item">
               <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=400&q=80" alt="Desk setup" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://m.media-amazon.com/images/I/813Jqiu1C5L._AC_SY200_.jpg" alt="Desk setup" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://m.media-amazon.com/images/I/810FNT2yCjL._AC_SY200_.jpg" alt="Desk setup" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://m.media-amazon.com/images/I/81fTd0YGauL._AC_SY200_.jpg" alt="Desk setup" />
+            </div>
+            <div class="scroll-item">
+              <img src="https://m.media-amazon.com/images/I/81HXIrqYh5L._AC_SY200_.jpg" alt="Desk setup" />
             </div>
             <div class="scroll-item">
               <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80" alt="Sofa" />
@@ -523,7 +535,7 @@
           </div>
 
           <!-- Right arrow -->
-          <button class="arrow-btn right" onclick="scrollRight('furniture-track','furniture-thumb')">
+          <button class="arrow-btn right" onclick="bscScrollRight2('furniture-track','furniture-thumb')">
             <svg viewBox="0 0 24 24">
               <polyline points="9 18 15 12 9 6" />
             </svg>
@@ -550,14 +562,14 @@
 
         <div class="scroll-wrapper">
           <!-- Left arrow -->
-          <button class="arrow-btn left" onclick="scrollLeft('cookware-track','cookware-thumb')">
+          <button class="arrow-btn left" onclick="bscScrollLeft1('cookware-track','cookware-thumb')">
             <svg viewBox="0 0 24 24">
               <polyline points="15 18 9 12 15 6" />
             </svg>
           </button>
 
           <!-- Scrollable images -->
-          <div class="scroll-track" id="cookware-track" onscroll="updateThumb('cookware-track','cookware-thumb')">
+          <div class="scroll-track" id="cookware-track" onscroll="bscUpdateThumb1('cookware-track','cookware-thumb')">
             <div class="scroll-item tall-item">
               <img src="https://m.media-amazon.com/images/I/51WLLO95EmL._AC_SY200_.jpg" alt="Kadai" />
             </div>
@@ -585,7 +597,7 @@
           </div>
 
           <!-- Right arrow -->
-          <button class="arrow-btn right" onclick="scrollRight('cookware-track','cookware-thumb')">
+          <button class="arrow-btn right" onclick="bscScrollRight1('cookware-track','cookware-thumb')">
             <svg viewBox="0 0 24 24">
               <polyline points="9 18 15 12 9 6" />
             </svg>
@@ -602,6 +614,118 @@
 
     </div>
 
+    <div class="section-grid-part4">
+
+      <div class="mcs-grid">
+      
+        <!-- ══════════════════════════════════════
+               CARD 1 — Keep shopping for
+          ══════════════════════════════════════ -->
+        <div class="mcs-card mcs-card--keep">
+          <div class="mcs-card-title">Keep shopping for</div>
+      
+          <div class="mcs-keep-body">
+      
+            <div class="mcs-keep-item">
+              <img class="mcs-keep-img" src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=300&q=80"
+                alt="Van Heusen Men's Cotton Polo" />
+              <span class="mcs-keep-name">Van Heusen Men's Cott...</span>
+              <span class="mcs-keep-price">
+                <span class="mcs-rupee">₹</span>659<span class="mcs-paise">00</span>
+              </span>
+            </div>
+      
+            <div class="mcs-keep-item">
+              <img class="mcs-keep-img" src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&q=80"
+                alt="Louis Philippe Men's Slim" />
+              <span class="mcs-keep-name">Louis Philippe Men's Sli...</span>
+              <span class="mcs-keep-price">
+                <span class="mcs-rupee">₹</span>704<span class="mcs-paise">00</span>
+              </span>
+            </div>
+      
+            <div class="mcs-keep-item">
+              <img class="mcs-keep-img" src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&q=80"
+                alt="Peter England Men's Snugfit" />
+              <span class="mcs-keep-name">Peter England Men's Sn...</span>
+              <span class="mcs-keep-price">
+                <span class="mcs-rupee">₹</span>589<span class="mcs-paise">00</span>
+              </span>
+            </div>
+      
+            <div class="mcs-keep-item">
+              <img class="mcs-keep-img" src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=300&q=80"
+                alt="Allen Solly Men's Solid" />
+              <span class="mcs-keep-name">Allen Solly Men's Solid...</span>
+              <span class="mcs-keep-price">
+                <span class="mcs-rupee">₹</span>809<span class="mcs-paise">00</span>
+              </span>
+            </div>
+      
+          </div>
+      
+          <a href="#" class="mcs-card-link mcs-keep-link">See more</a>
+        </div>
+      
+      
+        <!-- ══════════════════════════════════════
+               CARD 2 — Min.35% off | Small Business
+          ══════════════════════════════════════ -->
+        <div class="mcs-card mcs-card--smallbiz">
+          <div class="mcs-card-title">Min.35% off | Best selling products from Small Busines...</div>
+      
+          <div class="mcs-small-biz-body">
+            <img class="mcs-small-biz-img" src="https://m.media-amazon.com/images/I/71BSlWQ-UbL._AC_SY170_.jpg"
+              alt="Papasan Chair" />
+            <img class="mcs-small-biz-img" src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=400&q=80"
+              alt="Dining Chairs" />
+            <img class="mcs-small-biz-img" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80"
+              alt="Living Room Set" />
+            <img class="mcs-small-biz-img" src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&q=80"
+              alt="Bunk Bed" />
+          </div>
+          <!-- no link shown in original for this card -->
+        </div>
+      
+      
+        <!-- ══════════════════════════════════════
+               CARD 3 — Up to 50% off | International brands
+          ══════════════════════════════════════ -->
+        <div class="mcs-card mcs-card--intl">
+          <div class="mcs-card-title">Up to 50% off | International brands</div>
+      
+          <div class="mcs-intl-body">
+            <img class="mcs-intl-img" src="https://images-eu.ssl-images-amazon.com/images/G/31/img19/OOC/Gateway/2025/WK_1/2026/PC_CC_379X304._SY304_CB788260163_.jpg"
+              alt="International Brands Products" />
+          </div>
+      
+          <a href="#" class="mcs-card-link mcs-intl-link">See all offers</a>
+        </div>
+      
+      
+        <!-- ══════════════════════════════════════
+               CARD 4 — Customers' Most-Loved Fashion
+          ══════════════════════════════════════ -->
+        <div class="mcs-card mcs-card--fashion">
+          <div class="mcs-card-title">Customers' Most-Loved Fashion for you</div>
+      
+          <div class="mcs-fashion-body">
+            <img class="mcs-fashion-img" src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=300&q=80"
+              alt="Blue Polo Man" />
+            <img class="mcs-fashion-img" src="https://images.unsplash.com/photo-1622470953794-aa9c70b0fb9d?w=300&q=80"
+              alt="White Long Sleeve Man" />
+            <img class="mcs-fashion-img" src="https://images.unsplash.com/photo-1554568218-0f1715e72254?w=300&q=80"
+              alt="Light Blue Polo Man" />
+            <img class="mcs-fashion-img" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=300&q=80"
+              alt="Black Tank Top Woman" />
+          </div>
+      
+          <a href="#" class="mcs-card-link mcs-fashion-link">Explore more</a>
+        </div>
+      
+      </div>
+    </div>
+    
 
     <div class="section-grid-part4">
 
@@ -3431,6 +3555,48 @@
     }
 
     function bscUpdateThumb(trackId, thumbId) {
+      const track = document.getElementById(trackId);
+      const thumb = document.getElementById(thumbId);
+      const scrollable = track.scrollWidth - track.clientWidth;
+      const ratio = scrollable > 0 ? track.scrollLeft / scrollable : 0;
+      const thumbPct = Math.max(8, (track.clientWidth / track.scrollWidth) * 100);
+      thumb.style.width = thumbPct + '%';
+      thumb.style.left = (ratio * (100 - thumbPct)) + '%';
+    }
+
+
+    function bscScrollLeft1(trackId, thumbId) {
+      document.getElementById(trackId).scrollBy({ left: -BSC_SCROLL_AMT, behavior: 'smooth' });
+      setTimeout(() => bscUpdateThumb(trackId, thumbId), 320);
+    }
+
+    function bscScrollRight1(trackId, thumbId) {
+      document.getElementById(trackId).scrollBy({ left: BSC_SCROLL_AMT, behavior: 'smooth' });
+      setTimeout(() => bscUpdateThumb(trackId, thumbId), 320);
+    }
+
+    function bscUpdateThumb1(trackId, thumbId) {
+      const track = document.getElementById(trackId);
+      const thumb = document.getElementById(thumbId);
+      const scrollable = track.scrollWidth - track.clientWidth;
+      const ratio = scrollable > 0 ? track.scrollLeft / scrollable : 0;
+      const thumbPct = Math.max(8, (track.clientWidth / track.scrollWidth) * 100);
+      thumb.style.width = thumbPct + '%';
+      thumb.style.left = (ratio * (100 - thumbPct)) + '%';
+    }
+
+
+    function bscScrollLeft2(trackId, thumbId) {
+      document.getElementById(trackId).scrollBy({ left: -BSC_SCROLL_AMT, behavior: 'smooth' });
+      setTimeout(() => bscUpdateThumb(trackId, thumbId), 320);
+    }
+
+    function bscScrollRight2(trackId, thumbId) {
+      document.getElementById(trackId).scrollBy({ left: BSC_SCROLL_AMT, behavior: 'smooth' });
+      setTimeout(() => bscUpdateThumb(trackId, thumbId), 320);
+    }
+
+    function bscUpdateThumb2(trackId, thumbId) {
       const track = document.getElementById(trackId);
       const thumb = document.getElementById(thumbId);
       const scrollable = track.scrollWidth - track.clientWidth;

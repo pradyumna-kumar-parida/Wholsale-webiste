@@ -846,7 +846,8 @@ body {
 .products-section {
   /* max-width: 1400px; */
   margin: 0 auto;
-  padding: 0 20px 0;
+  padding: 10px 0;
+  /* padding: 0 20px 0; */
 }
 
 /* ENHANCED Filter Bar with Dropdowns */
@@ -1323,6 +1324,7 @@ nav {
   padding: 60px 20px;
   background: white;
   margin: 40px 0;
+  border-radius: 4px;
 }
 
 .section-headers {
@@ -1451,7 +1453,6 @@ nav {
   justify-content: space-between;
 }
 .container {
-  background-color: rgb(241, 237, 237);
   max-width: 1500px;
   position: relative;
   margin: 0 auto;
@@ -2170,7 +2171,7 @@ footer {
 .luxery-section {
   background: linear-gradient(135deg, #ffe4b5 0%, #ffd9a0 100%);
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 4px;
   margin-bottom: 30px;
   /* max-width: 1400px; */
   margin: 0 auto;
@@ -2251,8 +2252,12 @@ footer {
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 15px;
   padding: 20px;
-  /* max-width: 1400px; */
-  margin: 0 auto;
+  margin: 0px auto;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+  /* padding: 14px 0px 10px; */
+  position: relative;
+  margin-top: 30px;
 }
 
 .top-ranking-products {
@@ -2264,6 +2269,9 @@ footer {
   /* gap: 20px; */
   /* max-width: 1400px; */
   margin: 0 auto;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+  /* padding: 14px 0px 10px; */
   /* space between items */
 }
 
@@ -2288,10 +2296,12 @@ footer {
 .recommendations-section {
   /* max-width: 1400px; */
   margin: 0 auto;
+  margin-top: 30px;
   background: white;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   padding: 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
 }
 
 .recommendations-header {
@@ -2531,9 +2541,11 @@ footer {
   /* max-width: 1400px; */
   margin: 0 auto;
   background: white;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   padding: 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 30px;
+  border-radius: 4px;
 }
 
 .deals-header-bar {
@@ -3042,7 +3054,7 @@ footer {
   }
 }
 .section-grid-part1 {
-  padding: 20px;
+  padding: 10px 0;
 }
 .section-grid {
   display: grid;
@@ -3172,16 +3184,16 @@ footer {
   }
 }
 .section-grid-part2 {
-  padding: 20px;
+  padding: 10px 0;
 }
 .section-grid-part3 {
-  padding: 20px;
+  padding: 10px 0;
 }
 .section-grid-part4 {
-  padding: 20px;
+  padding: 10px 0;
 }
 .section-grid-part5 {
-  padding: 20px;
+  padding: 10px 0;
 }
 
 .scroll-section {
@@ -3668,6 +3680,7 @@ footer {
   display: grid;
   margin-bottom: 30px;
   gap: 20px;
+  border-radius: 4px;
 }
 .products-listings > h1 {
   margin-bottom: 30px;
@@ -3713,12 +3726,12 @@ a {
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
-  /* height: 100%; */
+  height: 100vh;
   display: flex;
   justify-self: center;
   background: #fff;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
-  overflow: scroll;
+  overflow: hidden;
 }
 
 /* ── LEFT: category list ── */
@@ -3732,6 +3745,7 @@ a {
 }
 #mmn-flyouts {
   width: 100%;
+  overflow-y: scroll;
 }
 .mmn-cat-item {
   display: flex;
@@ -3944,10 +3958,235 @@ a {
   }
 
   .mmn-img-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .mmn-flyout {
     padding: 12px;
   }
 }
+/* ══════════════════════════════════════
+       4-COLUMN GRID
+    ══════════════════════════════════════ */
+.mcs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0 auto;
+}
+
+/* ── Every card ── */
+.mcs-card {
+  background: #fff;
+  border-radius: 4px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card title */
+.mcs-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f1111;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+/* Bottom link */
+.mcs-card-link {
+ display: inline-block;
+    margin-top: 14px;
+    font-size: 15px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+}
+.mcs-card-link:hover {
+  color: #c7511f;
+  text-decoration: underline;
+}
+
+/* ══════════════════════════════════════
+       CARD 1 — "Keep shopping for"
+       2x2 grid of product images with name + price
+    ══════════════════════════════════════ */
+.mcs-keep-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 8px;
+  flex: 1;
+}
+
+.mcs-keep-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.mcs-keep-item:hover .mcs-keep-img {
+  opacity: 0.85;
+}
+
+.mcs-keep-img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+  transition: opacity 0.15s;
+}
+
+.mcs-keep-name {
+  font-size: 12px;
+  color: #0f1111;
+  margin-top: 5px;
+  line-height: 1.3;
+  /* truncate long names */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.mcs-keep-price {
+  font-size: 14px;
+  font-weight: 400;
+  color: #0f1111;
+  margin-top: 3px;
+}
+
+/* Price formatting: rupee symbol smaller, superscript paise */
+.mcs-keep-price .mcs-rupee {
+  font-size: 12px;
+  vertical-align: super;
+  line-height: 0;
+}
+
+.mcs-keep-price .mcs-paise {
+  font-size: 10px;
+  vertical-align: super;
+  line-height: 0;
+}
+
+/* ══════════════════════════════════════
+       CARD 2 — "Min.35% off | Small Business"
+       2x2 image grid (no labels, no prices)
+    ══════════════════════════════════════ */
+.mcs-small-biz-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  flex: 1;
+}
+
+.mcs-small-biz-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.mcs-small-biz-img:hover {
+  opacity: 0.88;
+}
+
+/* ══════════════════════════════════════
+       CARD 3 — "Up to 50% off | International brands"
+       Single full-width tall image
+    ══════════════════════════════════════ */
+.mcs-intl-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mcs-intl-img {
+  width: 100%;
+  flex: 1;
+  min-height: 280px;
+  object-fit: cover;
+  display: block;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.mcs-intl-img:hover {
+  opacity: 0.88;
+}
+
+/* ══════════════════════════════════════
+       CARD 4 — "Customers' Most-Loved Fashion"
+       2x2 fashion image grid (no labels/prices)
+    ══════════════════════════════════════ */
+.mcs-fashion-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  flex: 1;
+}
+
+.mcs-fashion-img {
+  width: 100%;
+  height: 148px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.mcs-fashion-img:hover {
+  opacity: 0.88;
+}
+
+/* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+
+/* 2 columns on tablet */
+@media (max-width: 900px) {
+  .mcs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mcs-keep-img {
+    height: 120px;
+  }
+  .mcs-small-biz-img {
+    height: 130px;
+  }
+  .mcs-intl-img {
+    min-height: 240px;
+  }
+  .mcs-fashion-img {
+    height: 130px;
+  }
+}
+
+/* 1 column on mobile */
+@media (max-width: 520px) {
+  .mcs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mcs-card-title {
+    font-size: 15px;
+  }
+  .mcs-keep-img {
+    height: 150px;
+  }
+  .mcs-small-biz-img {
+    height: 160px;
+  }
+  .mcs-intl-img {
+    min-height: 280px;
+  }
+  .mcs-fashion-img {
+    height: 160px;
+  }
+}
+ 
